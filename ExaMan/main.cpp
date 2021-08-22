@@ -238,8 +238,7 @@ int main()
 
 	int playerLives = 3;
 
-	//sf::RenderWindow window(sf::VideoMode(1024, 768), "EXA MAN");
-	sf::RenderWindow window(sf::VideoMode(1024, 768), "EXA MAN", sf::Style::Fullscreen);
+	sf::RenderWindow window(sf::VideoMode(1024, 768), "EXA MAN", sf::Style::Default);
 
 	// Camera
 	sf::View playerView(sf::FloatRect(0, 0, 200, 150));
