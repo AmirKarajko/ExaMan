@@ -195,8 +195,7 @@ sf::Texture backgroundTexture;
 #include "Game/Data/logo.h"
 sf::Texture logoTexture;
 
-static const int MENU = 0, GAME = 1, ABOUT = 2, PAUSE = 3, EXIT = 4, CREDITS = 5, LOGO = 6;
-int screen = LOGO;
+#include "ScreenEnum.h";
 
 sf::Music music;
 
