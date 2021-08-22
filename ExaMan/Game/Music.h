@@ -1,4 +1,5 @@
-#pragma once
+#ifndef MUSIC_H
+#define MUSIC_H
 
 #include <SFML/Audio.hpp>
 
@@ -38,3 +39,4 @@ void play_music(int id)
 		break;
 	}
 }
+#endif
