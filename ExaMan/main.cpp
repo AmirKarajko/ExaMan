@@ -1,5 +1,4 @@
 #include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
 
 #include "Game/Button.h"
 #include "Game/Bullet.h"
@@ -183,9 +182,7 @@ sf::Texture mediumexp1Texture;
 sf::Texture mediumexp2Texture;
 sf::Texture mediumexp3Texture;
 // Music
-#include "Game/Data/Music/menu.h"
-#include "Game/Data/Music/stage1.h"
-#include "Game/Data/Music/karateboss.h"
+#include "Game/Music.h"
 // Font
 #include "Game/Data/Font/COMPUTERRobot.h"
 // Background image
@@ -196,39 +193,6 @@ sf::Texture backgroundTexture;
 sf::Texture logoTexture;
 
 #include "ScreenEnum.h";
-
-sf::Music music;
-
-void play_music(int id)
-{
-	music.stop();
-	switch (id)
-	{
-	case 0:
-	{
-		music.openFromMemory(menu_ogg, menu_ogg_size);
-		music.setLoop(true);
-		music.play();
-	}
-	break;
-	case 1:
-	{
-		music.openFromMemory(stage1_ogg, stage1_ogg_size);
-		music.setLoop(true);
-		music.play();
-	}
-	break;
-	case 2:
-	{
-		music.openFromMemory(karateboss_wav, karateboss_wav_size);
-		music.setLoop(true);
-		music.play();
-	}
-	break;
-	default:
-		break;
-	}
-}
 
 int main()
 {
