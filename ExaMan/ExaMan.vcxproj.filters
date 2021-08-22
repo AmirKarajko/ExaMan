@@ -365,5 +365,8 @@
     <ClInclude Include="Game\Data\RCTank\rctankright2.h">
       <Filter>Header Files\Game\Data\RCTank</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Music.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
