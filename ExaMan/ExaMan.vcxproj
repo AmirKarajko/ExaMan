@@ -236,6 +236,7 @@
     <ClInclude Include="Game\GameObject.h" />
     <ClInclude Include="Game\KarateBoss.h" />
     <ClInclude Include="Game\Map.h" />
+    <ClInclude Include="Game\Music.h" />
     <ClInclude Include="Game\Pickup.h" />
     <ClInclude Include="Game\Player.h" />
     <ClInclude Include="Game\RCHeli.h" />

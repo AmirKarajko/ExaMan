@@ -1,8 +1,6 @@
 #ifndef MUSIC_H
 #define MUSIC_H
 
-#include <SFML/Audio.hpp>
-
 #include "Data/Music/menu.h"
 #include "Data/Music/stage1.h"
 #include "Data/Music/karateboss.h"
