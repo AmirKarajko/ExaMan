@@ -22,7 +22,7 @@ The project is created in SFML 2.5.1 and the tutorial for setting up SFML projec
 
 ## Setup
 
-Go to project properties and open "VC++ Directories". Include SFML 2.5.1 directory and add SFML lib to library directories.
+Go to project properties and open "VC++ Directories". Include the SFML 2.5.1 "include" directory and add SFML "lib" to library directories.
 
 Linker -> Input -> Additional Dependencies:
 sfml-graphics-d.lib
