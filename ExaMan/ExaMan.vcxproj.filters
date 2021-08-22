@@ -1,0 +1,369 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Game">
+      <UniqueIdentifier>{f2b881f5-0e1d-4cb7-bc89-9a69634eab81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Data">
+      <UniqueIdentifier>{cef05353-e56b-4ae2-b994-92af6f07e9fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Data\BackGround">
+      <UniqueIdentifier>{5e777107-80ab-41cc-986b-d79c44686aea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Data\Bullet">
+      <UniqueIdentifier>{816e0e63-23f5-4bcb-a79f-cdcbfed04a83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Data\Button">
+      <UniqueIdentifier>{89c85083-95f2-4e5a-94b8-23a49c375ddb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Data\Explosion">
+      <UniqueIdentifier>{2a796481-21c7-4c77-afc0-d06adf052a47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Data\Explosion\medium">
+      <UniqueIdentifier>{31e0c374-3bfc-4f40-bf98-739d606dcc67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Data\Explosion\small">
+      <UniqueIdentifier>{cd30dfbd-878e-4244-a8c6-362f415fae91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Data\Font">
+      <UniqueIdentifier>{93a0041a-a247-43cb-9bc8-ca32b68eb295}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Data\Icon">
+      <UniqueIdentifier>{ea310cde-8315-4d1f-a3e0-aeadc9ffa5f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Data\Item">
+      <UniqueIdentifier>{ee718c92-3401-42a0-8e1e-67a04435255c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Data\KarateBoss">
+      <UniqueIdentifier>{b68e877e-7967-405b-b487-0f83f6262166}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Data\Object">
+      <UniqueIdentifier>{9397a79c-6b1d-466c-9c5a-f167928d979e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Data\Player">
+      <UniqueIdentifier>{72560057-0f28-404b-813c-caf447bb1585}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Data\Player\Damage">
+      <UniqueIdentifier>{4c408c50-af34-4bef-befe-6e9175078684}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Data\Player\Death">
+      <UniqueIdentifier>{f6068e4d-e032-4453-a909-863f0172fe5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Data\Player\Idle">
+      <UniqueIdentifier>{8bbcf523-4684-4c93-b847-ce16dc607dfa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Data\Player\Jump">
+      <UniqueIdentifier>{9309f6c2-abff-4800-9455-cefdfce80ea7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Data\Player\Walk">
+      <UniqueIdentifier>{61923c9f-43d2-42f7-b252-a0156bbb3a8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Data\RCHeli">
+      <UniqueIdentifier>{9286c710-bdc4-4932-817f-bd734b65853e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Data\RCRobot">
+      <UniqueIdentifier>{d70adc13-61ce-499c-82c4-1efa17e6187e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Data\RCTank">
+      <UniqueIdentifier>{ea25c689-24b9-42ee-9bd0-8a2f6add77ba}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Game\Bullet.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Button.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Explosion.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameBackground.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObject.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\KarateBoss.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Map.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Pickup.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Player.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\RCHeli.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\RCRobot.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\RCTank.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\backgroundimage.h">
+      <Filter>Header Files\Game\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\logo.h">
+      <Filter>Header Files\Game\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\BackGround\bg1.h">
+      <Filter>Header Files\Game\Data\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\BackGround\bg2.h">
+      <Filter>Header Files\Game\Data\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\BackGround\bg3.h">
+      <Filter>Header Files\Game\Data\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\BackGround\bg4.h">
+      <Filter>Header Files\Game\Data\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\BackGround\bg5.h">
+      <Filter>Header Files\Game\Data\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\BackGround\car.h">
+      <Filter>Header Files\Game\Data\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\BackGround\clouds1.h">
+      <Filter>Header Files\Game\Data\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\BackGround\clouds2.h">
+      <Filter>Header Files\Game\Data\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\BackGround\lava1.h">
+      <Filter>Header Files\Game\Data\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\BackGround\lava2.h">
+      <Filter>Header Files\Game\Data\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\BackGround\wall.h">
+      <Filter>Header Files\Game\Data\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Bullet\bulletLeft.h">
+      <Filter>Header Files\Game\Data\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Bullet\bulletRight.h">
+      <Filter>Header Files\Game\Data\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Button\active.h">
+      <Filter>Header Files\Game\Data\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Button\hover.h">
+      <Filter>Header Files\Game\Data\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Button\inactive.h">
+      <Filter>Header Files\Game\Data\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Explosion\medium\mediumexp0.h">
+      <Filter>Header Files\Game\Data\Explosion\medium</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Explosion\medium\mediumexp1.h">
+      <Filter>Header Files\Game\Data\Explosion\medium</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Explosion\medium\mediumexp2.h">
+      <Filter>Header Files\Game\Data\Explosion\medium</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Explosion\medium\mediumexp3.h">
+      <Filter>Header Files\Game\Data\Explosion\medium</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Explosion\medium\mediumexp4.h">
+      <Filter>Header Files\Game\Data\Explosion\medium</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Explosion\small\smallexp0.h">
+      <Filter>Header Files\Game\Data\Explosion\small</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Explosion\small\smallexp1.h">
+      <Filter>Header Files\Game\Data\Explosion\small</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Explosion\small\smallexp2.h">
+      <Filter>Header Files\Game\Data\Explosion\small</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Explosion\small\smallexp3.h">
+      <Filter>Header Files\Game\Data\Explosion\small</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Explosion\small\smallexp4.h">
+      <Filter>Header Files\Game\Data\Explosion\small</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Font\COMPUTERRobot.h">
+      <Filter>Header Files\Game\Data\Font</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Icon\icon.h">
+      <Filter>Header Files\Game\Data\Icon</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Item\heart.h">
+      <Filter>Header Files\Game\Data\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\KarateBoss\bossattack1.h">
+      <Filter>Header Files\Game\Data\KarateBoss</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\KarateBoss\bossattack2.h">
+      <Filter>Header Files\Game\Data\KarateBoss</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\KarateBoss\bossattack3.h">
+      <Filter>Header Files\Game\Data\KarateBoss</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\KarateBoss\bossattack4.h">
+      <Filter>Header Files\Game\Data\KarateBoss</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\KarateBoss\bossIdleLeft.h">
+      <Filter>Header Files\Game\Data\KarateBoss</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\KarateBoss\bossIdleRight.h">
+      <Filter>Header Files\Game\Data\KarateBoss</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Object\box.h">
+      <Filter>Header Files\Game\Data\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Object\door.h">
+      <Filter>Header Files\Game\Data\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Object\ground.h">
+      <Filter>Header Files\Game\Data\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Object\ironwall.h">
+      <Filter>Header Files\Game\Data\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Object\needle.h">
+      <Filter>Header Files\Game\Data\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Object\window.h">
+      <Filter>Header Files\Game\Data\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Player\Damage\playerDamageLeft.h">
+      <Filter>Header Files\Game\Data\Player\Damage</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Player\Damage\playerDamageRight.h">
+      <Filter>Header Files\Game\Data\Player\Damage</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Player\Death\playerDeath1Left.h">
+      <Filter>Header Files\Game\Data\Player\Death</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Player\Death\playerDeath1Right.h">
+      <Filter>Header Files\Game\Data\Player\Death</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Player\Death\playerDeath2Left.h">
+      <Filter>Header Files\Game\Data\Player\Death</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Player\Death\playerDeath2Right.h">
+      <Filter>Header Files\Game\Data\Player\Death</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Player\Idle\playerIdleLeft.h">
+      <Filter>Header Files\Game\Data\Player\Idle</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Player\Idle\playerIdleRight.h">
+      <Filter>Header Files\Game\Data\Player\Idle</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Player\Idle\playerIdleShootLeft.h">
+      <Filter>Header Files\Game\Data\Player\Idle</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Player\Idle\playerIdleShootRight.h">
+      <Filter>Header Files\Game\Data\Player\Idle</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Player\Jump\playerJumpLeft.h">
+      <Filter>Header Files\Game\Data\Player\Jump</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Player\Jump\playerJumpRight.h">
+      <Filter>Header Files\Game\Data\Player\Jump</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Player\Jump\playerJumpShootLeft.h">
+      <Filter>Header Files\Game\Data\Player\Jump</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Player\Jump\playerJumpShootRight.h">
+      <Filter>Header Files\Game\Data\Player\Jump</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Player\Walk\playerWalkLeft1.h">
+      <Filter>Header Files\Game\Data\Player\Walk</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Player\Walk\playerWalkLeft2.h">
+      <Filter>Header Files\Game\Data\Player\Walk</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Player\Walk\playerWalkLeft3.h">
+      <Filter>Header Files\Game\Data\Player\Walk</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Player\Walk\playerWalkRight1.h">
+      <Filter>Header Files\Game\Data\Player\Walk</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Player\Walk\playerWalkRight2.h">
+      <Filter>Header Files\Game\Data\Player\Walk</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Player\Walk\playerWalkRight3.h">
+      <Filter>Header Files\Game\Data\Player\Walk</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Player\Walk\playerWalkShootLeft1.h">
+      <Filter>Header Files\Game\Data\Player\Walk</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Player\Walk\playerWalkShootLeft2.h">
+      <Filter>Header Files\Game\Data\Player\Walk</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Player\Walk\playerWalkShootLeft3.h">
+      <Filter>Header Files\Game\Data\Player\Walk</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Player\Walk\playerWalkShootRight1.h">
+      <Filter>Header Files\Game\Data\Player\Walk</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Player\Walk\playerWalkShootRight2.h">
+      <Filter>Header Files\Game\Data\Player\Walk</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\Player\Walk\playerWalkShootRight3.h">
+      <Filter>Header Files\Game\Data\Player\Walk</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\RCHeli\rcheli1.h">
+      <Filter>Header Files\Game\Data\RCHeli</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\RCHeli\rcheli2.h">
+      <Filter>Header Files\Game\Data\RCHeli</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\RCRobot\rcrobotidleleft.h">
+      <Filter>Header Files\Game\Data\RCRobot</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\RCRobot\rcrobotidleright.h">
+      <Filter>Header Files\Game\Data\RCRobot</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\RCRobot\rcrobotwalkleft1.h">
+      <Filter>Header Files\Game\Data\RCRobot</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\RCRobot\rcrobotwalkleft2.h">
+      <Filter>Header Files\Game\Data\RCRobot</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\RCRobot\rcrobotwalkright1.h">
+      <Filter>Header Files\Game\Data\RCRobot</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\RCRobot\rcrobotwalkright2.h">
+      <Filter>Header Files\Game\Data\RCRobot</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\RCTank\rctankleft1.h">
+      <Filter>Header Files\Game\Data\RCTank</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\RCTank\rctankleft2.h">
+      <Filter>Header Files\Game\Data\RCTank</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\RCTank\rctankright1.h">
+      <Filter>Header Files\Game\Data\RCTank</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Data\RCTank\rctankright2.h">
+      <Filter>Header Files\Game\Data\RCTank</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
