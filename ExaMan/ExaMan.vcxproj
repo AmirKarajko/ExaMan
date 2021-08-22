@@ -242,6 +242,13 @@
     <ClInclude Include="Game\RCHeli.h" />
     <ClInclude Include="Game\RCRobot.h" />
     <ClInclude Include="Game\RCTank.h" />
+    <ClInclude Include="Game\ScreenEnum.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ExaMan.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

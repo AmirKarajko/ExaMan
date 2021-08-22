@@ -193,7 +193,7 @@ sf::Texture backgroundTexture;
 #include "Game/Data/logo.h"
 sf::Texture logoTexture;
 
-#include "ScreenEnum.h";
+#include "Game/ScreenEnum.h";
 
 int main()
 {
