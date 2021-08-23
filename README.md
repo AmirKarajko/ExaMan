@@ -38,6 +38,8 @@ Open CMD and change directory location to bin2c unzipped folder -> Type: bin2c -
 
 Download link: https://sourceforge.net/projects/bin2c
 
+Tutorial: https://youtu.be/nMNBpQplgB0
+
 # Credits
 
 Music: https://opengameart.org/users/wyver9
