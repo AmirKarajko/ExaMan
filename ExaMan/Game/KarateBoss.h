@@ -1,5 +1,29 @@
+#pragma once
 #ifndef KARATEBOSS_H
 #define KARATEBOSS_H
+
+#include "Game/Data/KarateBoss/bossattack1.h"
+#include "Game/Data/KarateBoss/bossattack2.h"
+#include "Game/Data/KarateBoss/bossattack3.h"
+#include "Game/Data/KarateBoss/bossattack4.h"
+#include "Game/Data/KarateBoss/bossIdleLeft.h"
+#include "Game/Data/KarateBoss/bossIdleRight.h"
+sf::Texture bossattack1Texture;
+sf::Texture bossattack2Texture;
+sf::Texture bossattack3Texture;
+sf::Texture bossattack4Texture;
+sf::Texture bossIdleLeftTexture;
+sf::Texture bossIdleRightTexture;
+
+void loadKarateBossImages() {
+	bossattack1Texture.loadFromMemory(bossattack1_png, bossattack1_png_size);
+	bossattack2Texture.loadFromMemory(bossattack2_png, bossattack2_png_size);
+	bossattack3Texture.loadFromMemory(bossattack3_png, bossattack3_png_size);
+	bossattack4Texture.loadFromMemory(bossattack4_png, bossattack4_png_size);
+	bossIdleLeftTexture.loadFromMemory(bossIdleLeft_png, bossIdleLeft_png_size);
+	bossIdleRightTexture.loadFromMemory(bossIdleRight_png, bossIdleRight_png_size);
+}
+
 class KarateBoss
 {
 public:
