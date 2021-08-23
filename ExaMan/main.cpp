@@ -80,19 +80,6 @@ sf::Texture playerDeath2RightTexture;
 // Item
 #include "Game/Data/Item/heart.h"
 sf::Texture heartTexture;
-// RC Robot
-#include "Game/Data/RCRobot/rcrobotidleleft.h"
-#include "Game/Data/RCRobot/rcrobotidleright.h"
-#include "Game/Data/RCRobot/rcrobotwalkleft1.h"
-#include "Game/Data/RCRobot/rcrobotwalkleft2.h"
-#include "Game/Data/RCRobot/rcrobotwalkright1.h"
-#include "Game/Data/RCRobot/rcrobotwalkright2.h"
-sf::Texture rcrobotidleleftTexture;
-sf::Texture rcrobotidlerightTexture;
-sf::Texture rcrobotwalkleft1Texture;
-sf::Texture rcrobotwalkleft2Texture;
-sf::Texture rcrobotwalkright1Texture;
-sf::Texture rcrobotwalkright2Texture;
 // RC Heli
 #include "Game/Data/RCHeli/rcheli1.h"
 #include "Game/Data/RCHeli/rcheli2.h"
@@ -285,13 +272,8 @@ int main()
 	loadKarateBossImages();
 	// Item
 	heartTexture.loadFromMemory(heart_png, heart_png_size);
-	// RC Robot
-	rcrobotidleleftTexture.loadFromMemory(rcrobotidleleft_png, rcrobotidleleft_png_size);
-	rcrobotidlerightTexture.loadFromMemory(rcrobotidleright_png, rcrobotidleright_png_size);
-	rcrobotwalkleft1Texture.loadFromMemory(rcrobotwalkleft1_png, rcrobotwalkleft1_png_size);
-	rcrobotwalkleft2Texture.loadFromMemory(rcrobotwalkleft2_png, rcrobotwalkleft2_png_size);
-	rcrobotwalkright1Texture.loadFromMemory(rcrobotwalkright1_png, rcrobotwalkright1_png_size);
-	rcrobotwalkright2Texture.loadFromMemory(rcrobotwalkright2_png, rcrobotwalkright2_png_size);
+
+	loadRCRobotImages();
 	// RC Heli
 	rcheli1Texture.loadFromMemory(rcheli1_png, rcheli1_png_size);
 	rcheli2Texture.loadFromMemory(rcheli2_png, rcheli2_png_size);
