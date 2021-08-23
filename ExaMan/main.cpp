@@ -1,6 +1,8 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
+void resetGame();
+
 #include "Game/Button.h"
 #include "Game/Bullet.h"
 #include "Game/GameObject.h"
@@ -21,13 +23,7 @@ using namespace std;
 
 // Textures
 #include "Game/Data/Icon/icon.h"
-// Button
-#include "Game/Data/Button/active.h"
-#include "Game/Data/Button/hover.h"
-#include "Game/Data/Button/inactive.h"
-sf::Texture buttonActiveTexture;
-sf::Texture buttonInactiveTexture;
-sf::Texture buttonHoverTexture;
+
 // Player
 #include "Game/Data/Player/Idle/playerIdleRight.h"
 #include "Game/Data/Player/Idle/playerIdleLeft.h"
@@ -195,12 +191,14 @@ sf::Texture logoTexture;
 
 #include "ScreenEnum.h";
 
+// Map
+Map gameMap(0);
+int playerLives = 3;
+
 int main()
 {
 	int logoCounter = 0;
 	play_music(0);
-
-	int playerLives = 3;
 
 	sf::RenderWindow window(sf::VideoMode(1024, 768), "EXA MAN", sf::Style::Default);
 
@@ -271,10 +269,8 @@ int main()
 	backgroundTexture.loadFromMemory(backgroundimage_png, backgroundimage_png_size);
 	// Logo
 	logoTexture.loadFromMemory(logo_jpg, logo_jpg_size);
-	// Button
-	buttonActiveTexture.loadFromMemory(active_png, active_png_size);
-	buttonHoverTexture.loadFromMemory(hover_png, hover_png_size);
-	buttonInactiveTexture.loadFromMemory(inactive_png, inactive_png_size);
+	
+	loadButtonImages();
 
 	// Players
 	playerIdleRightTexture.loadFromMemory(playerIdleRight_png, playerIdleRight_png_size);
@@ -358,46 +354,8 @@ int main()
 	mediumexp1Texture.loadFromMemory(mediumexp1_png, mediumexp1_png_size);
 	mediumexp2Texture.loadFromMemory(mediumexp2_png, mediumexp2_png_size);
 	mediumexp3Texture.loadFromMemory(mediumexp3_png, mediumexp3_png_size);
-	// Map
-	Map map = Map(0);
 
-	// Button
-	Button buttons[7];
-
-	Button playButton = Button(0);
-	buttons[0] = playButton;
-	buttons[0].position = sf::Vector2f(20, 200);
-	buttons[0].dimension = sf::Vector2f(buttonInactiveTexture.getSize().x, buttonInactiveTexture.getSize().y);
-
-	Button exitButton = Button(1);
-	buttons[1] = exitButton;
-	buttons[1].position = sf::Vector2f(20, 620);
-	buttons[1].dimension = sf::Vector2f(buttonInactiveTexture.getSize().x, buttonInactiveTexture.getSize().y);
-
-	Button aboutButton = Button(2);
-	buttons[2] = aboutButton;
-	buttons[2].position = sf::Vector2f(20, 340);
-	buttons[2].dimension = sf::Vector2f(buttonInactiveTexture.getSize().x, buttonInactiveTexture.getSize().y);
-
-	Button backButton = Button(3);
-	buttons[3] = backButton;
-	buttons[3].position = sf::Vector2f(20, 620);
-	buttons[3].dimension = sf::Vector2f(buttonInactiveTexture.getSize().x, buttonInactiveTexture.getSize().y);
-
-	Button yesButton = Button(4);
-	buttons[4] = yesButton;
-	buttons[4].position = sf::Vector2f(20, 480);
-	buttons[4].dimension = sf::Vector2f(buttonInactiveTexture.getSize().x, buttonInactiveTexture.getSize().y);
-
-	Button noButton = Button(5);
-	buttons[5] = noButton;
-	buttons[5].position = sf::Vector2f(20, 620);
-	buttons[5].dimension = sf::Vector2f(buttonInactiveTexture.getSize().x, buttonInactiveTexture.getSize().y);
-
-	Button creditsButton = Button(6);
-	buttons[6] = creditsButton;
-	buttons[6].position = sf::Vector2f(20, 480);
-	buttons[6].dimension = sf::Vector2f(buttonInactiveTexture.getSize().x, buttonInactiveTexture.getSize().y);
+	initButtons();
 
 	// Window
 	while (window.isOpen())
@@ -405,112 +363,7 @@ int main()
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
-			sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-			sf::Vector2f mousePosF(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
-			for (int i = 0; i < sizeof(buttons) / sizeof(buttons[0]); i++)
-			{
-				if (mousePosF.x > buttons[i].position.x && mousePosF.x < buttons[i].position.x + buttonInactiveTexture.getSize().x
-					&& mousePosF.y > buttons[i].position.y && mousePosF.y < buttons[i].position.y + buttonInactiveTexture.getSize().y)
-				{
-					switch (event.type)
-					{
-					case sf::Event::MouseButtonReleased:
-						if (buttons[i].getState() == Button::STATE_ACTIVE)
-						{
-							if (buttons[i].visible)
-							{
-								switch (buttons[i].getId())
-								{
-								case 0:
-									if (screen == MENU)
-									{
-										screen = GAME;
-										map = Map(0);
-										playerLives = 3;
-										play_music(1);
-									}
-									break;
-								case 1:
-									if (screen == MENU)
-									{
-										screen = EXIT;
-									}
-									break;
-								case 2:
-									if (screen == MENU)
-									{
-										screen = ABOUT;
-									}
-									break;
-								case 3:
-									switch (screen)
-									{
-									case ABOUT:
-										screen = MENU;
-										break;
-									case CREDITS:
-										screen = MENU;
-										break;
-									default:
-										break;
-									}
-									break;
-								case 4:
-									if (screen == PAUSE)
-									{
-										screen = MENU;
-										play_music(0);
-									}
-									if (screen == EXIT)
-									{
-										window.close();
-									}
-									break;
-								case 5:
-									if (screen == EXIT)
-									{
-										screen = MENU;
-									}
-									if (screen == PAUSE)
-									{
-										screen = GAME;
-									}
-									break;
-								case 6:
-									if (screen == MENU)
-									{
-										screen = CREDITS;
-									}
-									break;
-								default:
-									break;
-								}
-							}
-							buttons[i].update(event, false, window);
-						}
-						break;
-					case sf::Event::MouseButtonPressed:
-						if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-						{
-							buttons[i].update(event, true, window);
-						}
-						break;
-					case sf::Event::MouseMoved:
-						if (!sf::Mouse::isButtonPressed(sf::Mouse::Left))
-						{
-							buttons[i].update(event, false, window);
-						}
-						break;
-					}
-				}
-				else
-				{
-					if (event.type == sf::Event::MouseMoved)
-					{
-						buttons[i].update(event, false, window);
-					}
-				}
-			}
+			updateButtons(window, event);
 
 			switch (event.type)
 			{
@@ -521,21 +374,21 @@ int main()
 				switch (event.key.code)
 				{
 				case sf::Keyboard::A:
-					if (!map.player.damage)
-						map.player.moveLeft = true;
+					if (!gameMap.player.damage)
+						gameMap.player.moveLeft = true;
 					break;
 				case sf::Keyboard::D:
-					if (!map.player.damage)
-						map.player.moveRight = true;
+					if (!gameMap.player.damage)
+						gameMap.player.moveRight = true;
 					break;
 				case sf::Keyboard::J:
-					if (map.player.onGround)
-						if (!map.player.damage)
-							map.player.jump = true;
+					if (gameMap.player.onGround)
+						if (!gameMap.player.damage)
+							gameMap.player.jump = true;
 					break;
 				case sf::Keyboard::K:
-					if (!map.player.damage)
-						map.player.shoot = true;
+					if (!gameMap.player.damage)
+						gameMap.player.shoot = true;
 					break;
 				case sf::Keyboard::Return:
 					break;
@@ -567,18 +420,18 @@ int main()
 				switch (event.key.code)
 				{
 				case sf::Keyboard::A:
-					map.player.moveLeft = false;
-					map.player.getLastDirection = map.player.LEFT;
+					gameMap.player.moveLeft = false;
+					gameMap.player.getLastDirection = gameMap.player.LEFT;
 					break;
 				case sf::Keyboard::D:
-					map.player.moveRight = false;
-					map.player.getLastDirection = map.player.RIGHT;
+					gameMap.player.moveRight = false;
+					gameMap.player.getLastDirection = gameMap.player.RIGHT;
 					break;
 				case sf::Keyboard::J:
-					map.player.jump = false;
+					gameMap.player.jump = false;
 					break;
 				case sf::Keyboard::K:
-					map.player.shoot = false;
+					gameMap.player.shoot = false;
 					break;
 				default:
 					break;
@@ -943,16 +796,16 @@ int main()
 			break;
 		case GAME:
 			// View
-			playerView.setCenter(sf::Vector2f(map.player.position.x + 10, map.player.position.y));
+			playerView.setCenter(sf::Vector2f(gameMap.player.position.x + 10, gameMap.player.position.y));
 
 			window.setView(playerView);
 
 			// Background
-			for (vector<GameBackground>::iterator it = map.backgrounds.begin(); it != map.backgrounds.end();)
+			for (vector<GameBackground>::iterator it = gameMap.backgrounds.begin(); it != gameMap.backgrounds.end();)
 			{
 				if (it->remove)
 				{
-					it = map.backgrounds.erase(it);
+					it = gameMap.backgrounds.erase(it);
 				}
 				else
 				{
@@ -1003,11 +856,11 @@ int main()
 						}
 						break;
 					case 6:
-						if (!map.player.shield)
-							if (map.player.collisionPosition.x + (map.player.width) + 7 > it->position.x && map.player.collisionPosition.x + 8 < it->position.x + 16
-								&& map.player.collisionPosition.y + (map.player.height) > it->position.y && map.player.collisionPosition.y < it->position.y + 16)
+						if (!gameMap.player.shield)
+							if (gameMap.player.collisionPosition.x + (gameMap.player.width) + 7 > it->position.x && gameMap.player.collisionPosition.x + 8 < it->position.x + 16
+								&& gameMap.player.collisionPosition.y + (gameMap.player.height) > it->position.y && gameMap.player.collisionPosition.y < it->position.y + 16)
 							{
-								map.player.damage = true;
+								gameMap.player.damage = true;
 							}
 						switch (it->animation)
 						{
@@ -1053,11 +906,11 @@ int main()
 			}
 
 			// Object
-			for (vector<GameObject>::iterator it = map.objects.begin(); it != map.objects.end();)
+			for (vector<GameObject>::iterator it = gameMap.objects.begin(); it != gameMap.objects.end();)
 			{
 				if (it->remove)
 				{
-					it = map.objects.erase(it);
+					it = gameMap.objects.erase(it);
 				}
 				else
 				{
@@ -1067,12 +920,12 @@ int main()
 						it->sprite.setTexture(groundTexture);
 						break;
 					case 1:
-						for (vector<Bullet>::iterator it2 = map.bullets.begin(); it2 != map.bullets.end();)
+						for (vector<Bullet>::iterator it2 = gameMap.bullets.begin(); it2 != gameMap.bullets.end();)
 						{
 							if (it->position.x + 16 >= it2->position.x && it->position.x <= it2->position.x + 8
 								&& it->position.y + 16 >= it2->position.y && it->position.y <= it2->position.y + 8)
 							{
-								map.explosions.push_back(Explosion(Explosion::SMALL, sf::Vector2f(it->position)));
+								gameMap.explosions.push_back(Explosion(Explosion::SMALL, sf::Vector2f(it->position)));
 								it->remove = true;
 								it2->remove = true;
 							}
@@ -1084,12 +937,12 @@ int main()
 						it->sprite.setTexture(ironwallTexture);
 						break;
 					case 3:
-						if (!map.player.shield)
-							if ((map.player.collisionPosition.y + 10 + map.player.height >= it->position.y) && (map.player.collisionPosition.y + 10 <= it->position.y + 16)
-								&& (map.player.collisionPosition.x + 8 + map.player.width >= it->position.x) && (map.player.collisionPosition.x + 8 <= it->position.x + 16))
+						if (!gameMap.player.shield)
+							if ((gameMap.player.collisionPosition.y + 10 + gameMap.player.height >= it->position.y) && (gameMap.player.collisionPosition.y + 10 <= it->position.y + 16)
+								&& (gameMap.player.collisionPosition.x + 8 + gameMap.player.width >= it->position.x) && (gameMap.player.collisionPosition.x + 8 <= it->position.x + 16))
 							{
 								playerLives = 0;
-								map.player.damage = true;
+								gameMap.player.damage = true;
 							}
 						it->sprite.setTexture(needleTexture);
 						break;
@@ -1104,10 +957,10 @@ int main()
 					}
 					if (it->id == 5)
 					{
-						if ((map.player.collisionPosition.y + 10 + map.player.height >= it->position.y) && (map.player.collisionPosition.y + 10 <= it->position.y + 16)
-							&& (map.player.collisionPosition.x + 8 + map.player.width >= it->position.x) && (map.player.collisionPosition.x + 8 <= it->position.x + 16))
+						if ((gameMap.player.collisionPosition.y + 10 + gameMap.player.height >= it->position.y) && (gameMap.player.collisionPosition.y + 10 <= it->position.y + 16)
+							&& (gameMap.player.collisionPosition.x + 8 + gameMap.player.width >= it->position.x) && (gameMap.player.collisionPosition.x + 8 <= it->position.x + 16))
 						{
-							map = Map(1);
+							gameMap = Map(1);
 							play_music(2);
 							break;
 						}
@@ -1119,11 +972,11 @@ int main()
 			}
 
 			// Pickup
-			for (vector<Pickup>::iterator it = map.pickups.begin(); it != map.pickups.end();)
+			for (vector<Pickup>::iterator it = gameMap.pickups.begin(); it != gameMap.pickups.end();)
 			{
 				if (it->remove)
 				{
-					it = map.pickups.erase(it);
+					it = gameMap.pickups.erase(it);
 				}
 				else
 				{
@@ -1135,8 +988,8 @@ int main()
 					default:
 						break;
 					}
-					if ((map.player.collisionPosition.y + 10 + map.player.height >= it->position.y) && (map.player.collisionPosition.y + 10 <= it->position.y + 16)
-						&& (map.player.collisionPosition.x + 8 + map.player.width >= it->position.x) && (map.player.collisionPosition.x + 8 <= it->position.x + 16))
+					if ((gameMap.player.collisionPosition.y + 10 + gameMap.player.height >= it->position.y) && (gameMap.player.collisionPosition.y + 10 <= it->position.y + 16)
+						&& (gameMap.player.collisionPosition.x + 8 + gameMap.player.width >= it->position.x) && (gameMap.player.collisionPosition.x + 8 <= it->position.x + 16))
 					{
 						playerLives++;
 						it->remove = true;
@@ -1148,11 +1001,11 @@ int main()
 			}
 
 			// Explosion
-			for (vector<Explosion>::iterator it = map.explosions.begin(); it != map.explosions.end();)
+			for (vector<Explosion>::iterator it = gameMap.explosions.begin(); it != gameMap.explosions.end();)
 			{
 				if (it->remove)
 				{
-					it = map.explosions.erase(it);
+					it = gameMap.explosions.erase(it);
 				}
 				else
 				{
@@ -1207,49 +1060,49 @@ int main()
 			}
 
 			// RC Robot
-			for (vector<RCRobot>::iterator it = map.rcrobots.begin(); it != map.rcrobots.end();)
+			for (vector<RCRobot>::iterator it = gameMap.rcrobots.begin(); it != gameMap.rcrobots.end();)
 			{
 				if (it->remove)
 				{
-					it = map.rcrobots.erase(it);
+					it = gameMap.rcrobots.erase(it);
 				}
 				else
 				{
-					if (!map.player.shield)
-						if ((map.player.collisionPosition.y + 10 + map.player.height >= it->position.y) && (map.player.collisionPosition.y + 10 <= it->position.y + 16)
-							&& (map.player.collisionPosition.x + 8 + map.player.width >= it->position.x) && (map.player.collisionPosition.x + 8 <= it->position.x + 16))
+					if (!gameMap.player.shield)
+						if ((gameMap.player.collisionPosition.y + 10 + gameMap.player.height >= it->position.y) && (gameMap.player.collisionPosition.y + 10 <= it->position.y + 16)
+							&& (gameMap.player.collisionPosition.x + 8 + gameMap.player.width >= it->position.x) && (gameMap.player.collisionPosition.x + 8 <= it->position.x + 16))
 						{
-							map.player.damage = true;
+							gameMap.player.damage = true;
 						}
-					for (vector<Bullet>::iterator it2 = map.bullets.begin(); it2 != map.bullets.end();)
+					for (vector<Bullet>::iterator it2 = gameMap.bullets.begin(); it2 != gameMap.bullets.end();)
 					{
 						if (it->position.x + it->width >= it2->position.x && it->position.x <= it2->position.x + 8
 							&& it->position.y + it->height >= it2->position.y && it->position.y <= it2->position.y + 8)
 						{
-							map.explosions.push_back(Explosion(Explosion::SMALL, sf::Vector2f(it->position)));
+							gameMap.explosions.push_back(Explosion(Explosion::SMALL, sf::Vector2f(it->position)));
 							it->remove = true;
 							it2->remove = true;
 						}
 						it2++;
 					}
-					for (vector<GameBackground>::iterator it2 = map.backgrounds.begin(); it2 != map.backgrounds.end();)
+					for (vector<GameBackground>::iterator it2 = gameMap.backgrounds.begin(); it2 != gameMap.backgrounds.end();)
 					{
 						if (it2->id == 6)
 						{
 							if (it->position.x + it->width / 2 >= it2->position.x && it->position.x <= it2->position.x + 8
 								&& it->position.y + it->height / 2 >= it2->position.y && it->position.y <= it2->position.y + 8)
 							{
-								map.explosions.push_back(Explosion(Explosion::SMALL, sf::Vector2f(it->position)));
+								gameMap.explosions.push_back(Explosion(Explosion::SMALL, sf::Vector2f(it->position)));
 								it->remove = true;
 							}
 
 						}
 						it2++;
 					}
-					if ((map.player.collisionPosition.y + 10 + map.player.height >= it->position.y - 75) && (map.player.collisionPosition.y + 10 <= it->position.y + 75 + 16)
-						&& (map.player.collisionPosition.x + 8 + map.player.width >= it->position.x - 100) && (map.player.collisionPosition.x + 8 <= it->position.x + 100 + 16))
+					if ((gameMap.player.collisionPosition.y + 10 + gameMap.player.height >= it->position.y - 75) && (gameMap.player.collisionPosition.y + 10 <= it->position.y + 75 + 16)
+						&& (gameMap.player.collisionPosition.x + 8 + gameMap.player.width >= it->position.x - 100) && (gameMap.player.collisionPosition.x + 8 <= it->position.x + 100 + 16))
 					{
-						it->update(map.objects);
+						it->update(gameMap.objects);
 					}
 					switch (it->state)
 					{
@@ -1295,47 +1148,47 @@ int main()
 			}
 
 			// RC Heli
-			for (vector<RCHeli>::iterator it = map.rchelis.begin(); it != map.rchelis.end();)
+			for (vector<RCHeli>::iterator it = gameMap.rchelis.begin(); it != gameMap.rchelis.end();)
 			{
 				if (it->remove)
 				{
-					it = map.rchelis.erase(it);
+					it = gameMap.rchelis.erase(it);
 				}
 				else
 				{
-					if (!map.player.shield)
-						if ((map.player.collisionPosition.y + 10 + map.player.height >= it->position.y) && (map.player.collisionPosition.y + 10 <= it->position.y + 16)
-							&& (map.player.collisionPosition.x + 8 + map.player.width >= it->position.x) && (map.player.collisionPosition.x + 8 <= it->position.x + 16))
+					if (!gameMap.player.shield)
+						if ((gameMap.player.collisionPosition.y + 10 + gameMap.player.height >= it->position.y) && (gameMap.player.collisionPosition.y + 10 <= it->position.y + 16)
+							&& (gameMap.player.collisionPosition.x + 8 + gameMap.player.width >= it->position.x) && (gameMap.player.collisionPosition.x + 8 <= it->position.x + 16))
 						{
-							map.player.damage = true;
+							gameMap.player.damage = true;
 						}
-					for (vector<Bullet>::iterator it2 = map.bullets.begin(); it2 != map.bullets.end();)
+					for (vector<Bullet>::iterator it2 = gameMap.bullets.begin(); it2 != gameMap.bullets.end();)
 					{
 						if (it->position.x + 16 >= it2->position.x && it->position.x <= it2->position.x + 8
 							&& it->position.y + 16 >= it2->position.y && it->position.y <= it2->position.y + 8)
 						{
-							map.explosions.push_back(Explosion(Explosion::SMALL, sf::Vector2f(it->position)));
+							gameMap.explosions.push_back(Explosion(Explosion::SMALL, sf::Vector2f(it->position)));
 							it->remove = true;
 							it2->remove = true;
 						}
 						it2++;
 					}
-					if ((map.player.collisionPosition.y + 10 + map.player.height >= it->position.y - 75) && (map.player.collisionPosition.y + 10 <= it->position.y + 75 + 16)
-						&& (map.player.collisionPosition.x + 8 + map.player.width >= it->position.x - 100) && (map.player.collisionPosition.x + 8 <= it->position.x + 100 + 16))
+					if ((gameMap.player.collisionPosition.y + 10 + gameMap.player.height >= it->position.y - 75) && (gameMap.player.collisionPosition.y + 10 <= it->position.y + 75 + 16)
+						&& (gameMap.player.collisionPosition.x + 8 + gameMap.player.width >= it->position.x - 100) && (gameMap.player.collisionPosition.x + 8 <= it->position.x + 100 + 16))
 					{
-						if (map.player.position.x + map.player.width > it->position.x + 16 + 8)
+						if (gameMap.player.position.x + gameMap.player.width > it->position.x + 16 + 8)
 						{
 							it->directionX = RCHeli::RIGHT;
 						}
-						if (map.player.position.x + 16 + 8 < it->position.x + 16)
+						if (gameMap.player.position.x + 16 + 8 < it->position.x + 16)
 						{
 							it->directionX = RCHeli::LEFT;
 						}
-						if (map.player.position.y + map.player.height - 10 < it->position.y + 16)
+						if (gameMap.player.position.y + gameMap.player.height - 10 < it->position.y + 16)
 						{
 							it->directionY = RCHeli::DOWN;
 						}
-						if (map.player.position.y - 10 > it->position.y + 16)
+						if (gameMap.player.position.y - 10 > it->position.y + 16)
 						{
 							it->directionY = RCHeli::UP;
 						}
@@ -1375,11 +1228,11 @@ int main()
 			}
 
 			// RC Tank
-			for (vector<RCTank>::iterator it = map.rctanks.begin(); it != map.rctanks.end();)
+			for (vector<RCTank>::iterator it = gameMap.rctanks.begin(); it != gameMap.rctanks.end();)
 			{
 				if (it->remove)
 				{
-					it = map.rctanks.erase(it);
+					it = gameMap.rctanks.erase(it);
 				}
 				else
 				{
@@ -1388,52 +1241,52 @@ int main()
 						switch (it->direction)
 						{
 						case RCTank::LEFT:
-							map.bullets.push_back(Bullet(Bullet::ENEMIES, Bullet::LEFT, sf::Vector2f(it->position.x + 3, it->position.y - 2)));
+							gameMap.bullets.push_back(Bullet(Bullet::ENEMIES, Bullet::LEFT, sf::Vector2f(it->position.x + 3, it->position.y - 2)));
 							break;
 						case RCTank::RIGHT:
-							map.bullets.push_back(Bullet(Bullet::ENEMIES, Bullet::RIGHT, sf::Vector2f(it->position.x + 3, it->position.y - 2)));
+							gameMap.bullets.push_back(Bullet(Bullet::ENEMIES, Bullet::RIGHT, sf::Vector2f(it->position.x + 3, it->position.y - 2)));
 							break;
 						default:
 							break;
 						}
 						it->shoot = false;
 					}
-					if (!map.player.shield)
-						if ((map.player.collisionPosition.y + 10 + map.player.height >= it->position.y) && (map.player.collisionPosition.y + 10 <= it->position.y + 16)
-							&& (map.player.collisionPosition.x + 8 + map.player.width >= it->position.x) && (map.player.collisionPosition.x + 8 <= it->position.x + 16))
+					if (!gameMap.player.shield)
+						if ((gameMap.player.collisionPosition.y + 10 + gameMap.player.height >= it->position.y) && (gameMap.player.collisionPosition.y + 10 <= it->position.y + 16)
+							&& (gameMap.player.collisionPosition.x + 8 + gameMap.player.width >= it->position.x) && (gameMap.player.collisionPosition.x + 8 <= it->position.x + 16))
 						{
-							map.player.damage = true;
+							gameMap.player.damage = true;
 						}
-					for (vector<Bullet>::iterator it2 = map.bullets.begin(); it2 != map.bullets.end();)
+					for (vector<Bullet>::iterator it2 = gameMap.bullets.begin(); it2 != gameMap.bullets.end();)
 					{
 						if (it2->which == Bullet::PLAYERS)
 							if (it->position.x + it->width >= it2->position.x && it->position.x <= it2->position.x + 8
 								&& it->position.y + it->height >= it2->position.y && it->position.y <= it2->position.y + 8)
 							{
-								map.explosions.push_back(Explosion(Explosion::SMALL, sf::Vector2f(it->position)));
+								gameMap.explosions.push_back(Explosion(Explosion::SMALL, sf::Vector2f(it->position)));
 								it->remove = true;
 								it2->remove = true;
 							}
 						it2++;
 					}
-					for (vector<GameBackground>::iterator it2 = map.backgrounds.begin(); it2 != map.backgrounds.end();)
+					for (vector<GameBackground>::iterator it2 = gameMap.backgrounds.begin(); it2 != gameMap.backgrounds.end();)
 					{
 						if (it2->id == 6)
 						{
 							if (it->position.x + it->width / 2 >= it2->position.x && it->position.x <= it2->position.x + 8
 								&& it->position.y + it->height / 2 >= it2->position.y && it->position.y <= it2->position.y + 8)
 							{
-								map.explosions.push_back(Explosion(Explosion::SMALL, sf::Vector2f(it->position)));
+								gameMap.explosions.push_back(Explosion(Explosion::SMALL, sf::Vector2f(it->position)));
 								it->remove = true;
 							}
 
 						}
 						it2++;
 					}
-					if ((map.player.collisionPosition.y + 10 + map.player.height >= it->position.y - 75) && (map.player.collisionPosition.y + 10 <= it->position.y + 75 + 16)
-						&& (map.player.collisionPosition.x + 8 + map.player.width >= it->position.x - 100) && (map.player.collisionPosition.x + 8 <= it->position.x + 100 + 16))
+					if ((gameMap.player.collisionPosition.y + 10 + gameMap.player.height >= it->position.y - 75) && (gameMap.player.collisionPosition.y + 10 <= it->position.y + 75 + 16)
+						&& (gameMap.player.collisionPosition.x + 8 + gameMap.player.width >= it->position.x - 100) && (gameMap.player.collisionPosition.x + 8 <= it->position.x + 100 + 16))
 					{
-						it->update(map.objects);
+						it->update(gameMap.objects);
 					}
 					switch (it->state)
 					{
@@ -1479,21 +1332,21 @@ int main()
 			}
 
 			// Karate boss
-			for (vector<KarateBoss>::iterator it = map.karatebosses.begin(); it != map.karatebosses.end();)
+			for (vector<KarateBoss>::iterator it = gameMap.karatebosses.begin(); it != gameMap.karatebosses.end();)
 			{
 				if (it->remove)
 				{
-					it = map.karatebosses.erase(it);
+					it = gameMap.karatebosses.erase(it);
 				}
 				else
 				{
-					if (!map.player.shield)
-						if ((map.player.collisionPosition.y + 10 + map.player.height >= it->collisionPosition.y + 10) && (map.player.collisionPosition.y + 10 <= it->collisionPosition.y + 10 + it->height)
-							&& (map.player.collisionPosition.x + 8 + map.player.width >= it->collisionPosition.x + 8) && (map.player.collisionPosition.x + 8 <= it->collisionPosition.x + 8 + it->width))
+					if (!gameMap.player.shield)
+						if ((gameMap.player.collisionPosition.y + 10 + gameMap.player.height >= it->collisionPosition.y + 10) && (gameMap.player.collisionPosition.y + 10 <= it->collisionPosition.y + 10 + it->height)
+							&& (gameMap.player.collisionPosition.x + 8 + gameMap.player.width >= it->collisionPosition.x + 8) && (gameMap.player.collisionPosition.x + 8 <= it->collisionPosition.x + 8 + it->width))
 						{
-							map.player.damage = true;
+							gameMap.player.damage = true;
 						}
-					for (vector<Bullet>::iterator it2 = map.bullets.begin(); it2 != map.bullets.end();)
+					for (vector<Bullet>::iterator it2 = gameMap.bullets.begin(); it2 != gameMap.bullets.end();)
 					{
 						if (it->collisionPosition.x + 8 + it->width >= it2->position.x && it->collisionPosition.x + 8 <= it2->position.x + 8
 							&& it->collisionPosition.y + 10 + it->height >= it2->position.y && it->collisionPosition.y + 10 <= it2->position.y + 8)
@@ -1504,15 +1357,15 @@ int main()
 							}
 							else
 							{
-								map.player.missioncomplete = true;
-								map.explosions.push_back(Explosion(Explosion::MEDIUM, sf::Vector2f(it->position)));
+								gameMap.player.missioncomplete = true;
+								gameMap.explosions.push_back(Explosion(Explosion::MEDIUM, sf::Vector2f(it->position)));
 								it->remove = true;
 							}
 							it2->remove = true;
 						}
 						it2++;
 					}
-					it->update(map.objects);
+					it->update(gameMap.objects);
 					switch (it->state)
 					{
 					case KarateBoss::IDLE:
@@ -1565,11 +1418,11 @@ int main()
 			}
 
 			// Bullet
-			for (vector<Bullet>::iterator it = map.bullets.begin(); it != map.bullets.end();)
+			for (vector<Bullet>::iterator it = gameMap.bullets.begin(); it != gameMap.bullets.end();)
 			{
 				if (it->remove)
 				{
-					it = map.bullets.erase(it);
+					it = gameMap.bullets.erase(it);
 				}
 				else
 				{
@@ -1585,11 +1438,11 @@ int main()
 						break;
 					}
 					if (it->which == Bullet::ENEMIES)
-						if (!map.player.shield && !map.player.death)
-							if ((map.player.collisionPosition.y + 10 + map.player.height >= it->position.y) && (map.player.collisionPosition.y + 10 <= it->position.y + 8)
-								&& (map.player.collisionPosition.x + 8 + map.player.width >= it->position.x) && (map.player.collisionPosition.x + 8 <= it->position.x + 8))
+						if (!gameMap.player.shield && !gameMap.player.death)
+							if ((gameMap.player.collisionPosition.y + 10 + gameMap.player.height >= it->position.y) && (gameMap.player.collisionPosition.y + 10 <= it->position.y + 8)
+								&& (gameMap.player.collisionPosition.x + 8 + gameMap.player.width >= it->position.x) && (gameMap.player.collisionPosition.x + 8 <= it->position.x + 8))
 							{
-								map.player.damage = true;
+								gameMap.player.damage = true;
 								it->remove = true;
 							}
 					it->sprite.setPosition(it->position);
@@ -1600,80 +1453,80 @@ int main()
 			}
 
 			// Player Control
-			if (map.player.shoot)
+			if (gameMap.player.shoot)
 			{
-				if (map.player.shootCounter <= 0)
+				if (gameMap.player.shootCounter <= 0)
 				{
-					if (map.player.direction == map.player.LEFT)
-						map.bullets.push_back(Bullet(Bullet::PLAYERS, map.player.direction, sf::Vector2f(map.player.position.x - 8, map.player.position.y + 14)));
-					if (map.player.direction == map.player.RIGHT)
-						map.bullets.push_back(Bullet(Bullet::PLAYERS, map.player.direction, sf::Vector2f(map.player.position.x + 32, map.player.position.y + 14)));
-					map.player.shootCounter = 10;
+					if (gameMap.player.direction == gameMap.player.LEFT)
+						gameMap.bullets.push_back(Bullet(Bullet::PLAYERS, gameMap.player.direction, sf::Vector2f(gameMap.player.position.x - 8, gameMap.player.position.y + 14)));
+					if (gameMap.player.direction == gameMap.player.RIGHT)
+						gameMap.bullets.push_back(Bullet(Bullet::PLAYERS, gameMap.player.direction, sf::Vector2f(gameMap.player.position.x + 32, gameMap.player.position.y + 14)));
+					gameMap.player.shootCounter = 10;
 				}
 				else
 				{
-					map.player.shootCounter--;
+					gameMap.player.shootCounter--;
 				}
 			}
 			else
 			{
-				map.player.shootCounter = 0;
+				gameMap.player.shootCounter = 0;
 			}
 
 			// Player draw
-			if (map.player.visible)
+			if (gameMap.player.visible)
 			{
-				if (!map.player.damage)
+				if (!gameMap.player.damage)
 				{
-					if (map.player.onGround)
+					if (gameMap.player.onGround)
 					{
-						if (!map.player.shoot)
+						if (!gameMap.player.shoot)
 						{
-							switch (map.player.state)
+							switch (gameMap.player.state)
 							{
-							case map.player.IDLE:
-								switch (map.player.direction)
+							case gameMap.player.IDLE:
+								switch (gameMap.player.direction)
 								{
-								case map.player.RIGHT:
-									map.player.sprite.setTexture(playerIdleRightTexture);
+								case gameMap.player.RIGHT:
+									gameMap.player.sprite.setTexture(playerIdleRightTexture);
 									break;
-								case map.player.LEFT:
-									map.player.sprite.setTexture(playerIdleLeftTexture);
+								case gameMap.player.LEFT:
+									gameMap.player.sprite.setTexture(playerIdleLeftTexture);
 									break;
 								default:
 									break;
 								}
 								break;
-							case map.player.WALK:
-								switch (map.player.direction)
+							case gameMap.player.WALK:
+								switch (gameMap.player.direction)
 								{
-								case map.player.RIGHT:
-									switch (map.player.spriteId)
+								case gameMap.player.RIGHT:
+									switch (gameMap.player.spriteId)
 									{
 									case 0:
-										map.player.sprite.setTexture(playerWalkRight1Texture);
+										gameMap.player.sprite.setTexture(playerWalkRight1Texture);
 										break;
 									case 1:
-										map.player.sprite.setTexture(playerWalkRight2Texture);
+										gameMap.player.sprite.setTexture(playerWalkRight2Texture);
 										break;
 									case 2:
-										map.player.sprite.setTexture(playerWalkRight3Texture);
+										gameMap.player.sprite.setTexture(playerWalkRight3Texture);
 										break;
 									default:
 										break;
 									}
 									break;
-								case map.player.LEFT:
-									switch (map.player.spriteId)
+								case gameMap.player.LEFT:
+									switch (gameMap.player.spriteId)
 									{
 									case 0:
-										map.player.sprite.setTexture(playerWalkLeft1Texture);
+										gameMap.player.sprite.setTexture(playerWalkLeft1Texture);
 										break;
 									case 1:
-										map.player.sprite.setTexture(playerWalkLeft2Texture);
+										gameMap.player.sprite.setTexture(playerWalkLeft2Texture);
 										break;
 									case 2:
-										map.player.sprite.setTexture(playerWalkLeft3Texture);
+										gameMap.player.sprite.setTexture(playerWalkLeft3Texture);
 										break;
 									default:
 										break;
@@ -1689,51 +1542,51 @@ int main()
 						}
 						else
 						{
-							switch (map.player.state)
+							switch (gameMap.player.state)
 							{
-							case map.player.IDLE:
-								switch (map.player.direction)
+							case gameMap.player.IDLE:
+								switch (gameMap.player.direction)
 								{
-								case map.player.RIGHT:
-									map.player.sprite.setTexture(playerIdleShootRightTexture);
+								case gameMap.player.RIGHT:
+									gameMap.player.sprite.setTexture(playerIdleShootRightTexture);
 									break;
-								case map.player.LEFT:
-									map.player.sprite.setTexture(playerIdleShootLeftTexture);
+								case gameMap.player.LEFT:
+									gameMap.player.sprite.setTexture(playerIdleShootLeftTexture);
 									break;
 								default:
 									break;
 								}
 								break;
-							case map.player.WALK:
-								switch (map.player.direction)
+							case gameMap.player.WALK:
+								switch (gameMap.player.direction)
 								{
-								case map.player.RIGHT:
-									switch (map.player.spriteId)
+								case gameMap.player.RIGHT:
+									switch (gameMap.player.spriteId)
 									{
 									case 0:
-										map.player.sprite.setTexture(playerWalkShootRight1Texture);
+										gameMap.player.sprite.setTexture(playerWalkShootRight1Texture);
 										break;
 									case 1:
-										map.player.sprite.setTexture(playerWalkShootRight2Texture);
+										gameMap.player.sprite.setTexture(playerWalkShootRight2Texture);
 										break;
 									case 2:
-										map.player.sprite.setTexture(playerWalkShootRight3Texture);
+										gameMap.player.sprite.setTexture(playerWalkShootRight3Texture);
 										break;
 									default:
 										break;
 									}
 									break;
-								case map.player.LEFT:
-									switch (map.player.spriteId)
+								case gameMap.player.LEFT:
+									switch (gameMap.player.spriteId)
 									{
 									case 0:
-										map.player.sprite.setTexture(playerWalkShootLeft1Texture);
+										gameMap.player.sprite.setTexture(playerWalkShootLeft1Texture);
 										break;
 									case 1:
-										map.player.sprite.setTexture(playerWalkShootLeft2Texture);
+										gameMap.player.sprite.setTexture(playerWalkShootLeft2Texture);
 										break;
 									case 2:
-										map.player.sprite.setTexture(playerWalkShootLeft3Texture);
+										gameMap.player.sprite.setTexture(playerWalkShootLeft3Texture);
 										break;
 									default:
 										break;
@@ -1750,15 +1603,15 @@ int main()
 					}
 					else
 					{
-						if (!map.player.shoot)
+						if (!gameMap.player.shoot)
 						{
-							switch (map.player.direction)
+							switch (gameMap.player.direction)
 							{
-							case map.player.RIGHT:
-								map.player.sprite.setTexture(playerJumpRightTexture);
+							case gameMap.player.RIGHT:
+								gameMap.player.sprite.setTexture(playerJumpRightTexture);
 								break;
-							case map.player.LEFT:
-								map.player.sprite.setTexture(playerJumpLeftTexture);
+							case gameMap.player.LEFT:
+								gameMap.player.sprite.setTexture(playerJumpLeftTexture);
 								break;
 							default:
 								break;
@@ -1766,13 +1619,13 @@ int main()
 						}
 						else
 						{
-							switch (map.player.direction)
+							switch (gameMap.player.direction)
 							{
-							case map.player.RIGHT:
-								map.player.sprite.setTexture(playerJumpShootRightTexture);
+							case gameMap.player.RIGHT:
+								gameMap.player.sprite.setTexture(playerJumpShootRightTexture);
 								break;
-							case map.player.LEFT:
-								map.player.sprite.setTexture(playerJumpShootLeftTexture);
+							case gameMap.player.LEFT:
+								gameMap.player.sprite.setTexture(playerJumpShootLeftTexture);
 								break;
 							default:
 								break;
@@ -1782,15 +1635,15 @@ int main()
 				}
 				else
 				{
-					if (!map.player.death)
+					if (!gameMap.player.death)
 					{
-						switch (map.player.direction)
+						switch (gameMap.player.direction)
 						{
 						case Player::LEFT:
-							map.player.sprite.setTexture(playerDamageLeftTexture);
+							gameMap.player.sprite.setTexture(playerDamageLeftTexture);
 							break;
 						case Player::RIGHT:
-							map.player.sprite.setTexture(playerDamageRightTexture);
+							gameMap.player.sprite.setTexture(playerDamageRightTexture);
 							break;
 						default:
 							break;
@@ -1798,41 +1651,41 @@ int main()
 					}
 					else
 					{
-						if (map.player.deathpose < 1)
+						if (gameMap.player.deathpose < 1)
 						{
-							if (map.player.deathposeCounter < 10)
+							if (gameMap.player.deathposeCounter < 10)
 							{
-								map.player.deathposeCounter++;
+								gameMap.player.deathposeCounter++;
 							}
 							else
 							{
-								map.player.deathpose++;
-								map.player.deathposeCounter = 0;
+								gameMap.player.deathpose++;
+								gameMap.player.deathposeCounter = 0;
 							}
 						}
-						switch (map.player.direction)
+						switch (gameMap.player.direction)
 						{
 						case Player::LEFT:
-							switch (map.player.deathpose)
+							switch (gameMap.player.deathpose)
 							{
 							case 0:
-								map.player.sprite.setTexture(playerDeath1LeftTexture);
+								gameMap.player.sprite.setTexture(playerDeath1LeftTexture);
 								break;
 							case 1:
-								map.player.sprite.setTexture(playerDeath2LeftTexture);
+								gameMap.player.sprite.setTexture(playerDeath2LeftTexture);
 								break;
 							default:
 								break;
 							}
 							break;
 						case Player::RIGHT:
-							switch (map.player.deathpose)
+							switch (gameMap.player.deathpose)
 							{
 							case 0:
-								map.player.sprite.setTexture(playerDeath1RightTexture);
+								gameMap.player.sprite.setTexture(playerDeath1RightTexture);
 								break;
 							case 1:
-								map.player.sprite.setTexture(playerDeath2RightTexture);
+								gameMap.player.sprite.setTexture(playerDeath2RightTexture);
 								break;
 							default:
 								break;
@@ -1845,75 +1698,75 @@ int main()
 
 				}
 			}
-			map.player.sprite.setPosition(map.player.position);
-			window.draw(map.player.sprite);
-			if (map.player.damage)
+			gameMap.player.sprite.setPosition(gameMap.player.position);
+			window.draw(gameMap.player.sprite);
+			if (gameMap.player.damage)
 			{
-				map.player.moveLeft = false;
-				map.player.moveRight = false;
-				map.player.jump = false;
-				map.player.shoot = false;
-				if (map.player.damageCounter < 25)
+				gameMap.player.moveLeft = false;
+				gameMap.player.moveRight = false;
+				gameMap.player.jump = false;
+				gameMap.player.shoot = false;
+				if (gameMap.player.damageCounter < 25)
 				{
-					map.player.damageCounter++;
+					gameMap.player.damageCounter++;
 				}
 				else
 				{
 					if (playerLives > 0)
 					{
 						playerLives--;
-						map.player.damage = false;
-						map.player.damageCounter = 0;
-						if (!map.player.shield)
+						gameMap.player.damage = false;
+						gameMap.player.damageCounter = 0;
+						if (!gameMap.player.shield)
 						{
-							map.player.shield = true;
+							gameMap.player.shield = true;
 						}
 					}
 					else
 					{
-						if (!map.player.gameover)
+						if (!gameMap.player.gameover)
 						{
-							map.player.gameover = true;
+							gameMap.player.gameover = true;
 						}
-						map.player.death = true;
+						gameMap.player.death = true;
 					}
 				}
 			}
 			else
 			{
-				if (map.player.shield)
+				if (gameMap.player.shield)
 				{
-					if (map.player.shieldCounter < 100)
+					if (gameMap.player.shieldCounter < 100)
 					{
-						if (map.player.visibilityCounter < 5)
+						if (gameMap.player.visibilityCounter < 5)
 						{
-							map.player.visibilityCounter++;
+							gameMap.player.visibilityCounter++;
 						}
 						else
 						{
-							if (map.player.visible)
+							if (gameMap.player.visible)
 							{
-								map.player.visible = false;
+								gameMap.player.visible = false;
 							}
 							else
 							{
-								map.player.visible = true;
+								gameMap.player.visible = true;
 							}
-							map.player.visibilityCounter = 0;
+							gameMap.player.visibilityCounter = 0;
 						}
-						map.player.shieldCounter++;
+						gameMap.player.shieldCounter++;
 					}
 					else
 					{
-						map.player.shield = false;
-						map.player.visible = true;
-						map.player.shieldCounter = 0;
+						gameMap.player.shield = false;
+						gameMap.player.visible = true;
+						gameMap.player.shieldCounter = 0;
 					}
 				}
 			}
-			map.player.update(map.objects);
+			gameMap.player.update(gameMap.objects);
 			// Game Over
-			if (map.player.gameover)
+			if (gameMap.player.gameover)
 			{
 				window.setView(menuView);
 				sf::Text gameoverText;
@@ -1923,19 +1776,19 @@ int main()
 				//gameoverText.setColor(sf::Color::Red);
 				gameoverText.setPosition(512 - gameoverText.getLocalBounds().width / 2, 384 - gameoverText.getLocalBounds().height);
 				window.draw(gameoverText);
-				if (map.player.gameoverCounter < 150)
+				if (gameMap.player.gameoverCounter < 150)
 				{
-					map.player.gameoverCounter++;
+					gameMap.player.gameoverCounter++;
 				}
 				else
 				{
 					screen = MENU;
 					play_music(0);
-					map.player.gameoverCounter = 0;
+					gameMap.player.gameoverCounter = 0;
 				}
 			}
 			// Mission complete
-			if (map.player.missioncomplete)
+			if (gameMap.player.missioncomplete)
 			{
 				window.setView(menuView);
 				sf::Text missioncompleteText;
@@ -1945,15 +1798,15 @@ int main()
 				//missioncompleteText.setColor(sf::Color::Green);
 				missioncompleteText.setPosition(512 - missioncompleteText.getLocalBounds().width / 2, 384 - missioncompleteText.getLocalBounds().height);
 				window.draw(missioncompleteText);
-				if (map.player.missioncompleteCounter < 150)
+				if (gameMap.player.missioncompleteCounter < 150)
 				{
-					map.player.missioncompleteCounter++;
+					gameMap.player.missioncompleteCounter++;
 				}
 				else
 				{
 					screen = MENU;
 					play_music(0);
-					map.player.missioncompleteCounter = 0;
+					gameMap.player.missioncompleteCounter = 0;
 				}
 			}
 			// Player status
@@ -1983,4 +1836,9 @@ int main()
 	}
 
 	return 0;
+}
+
+void resetGame() {
+	gameMap = Map(0);
+	playerLives = 3;
 }
