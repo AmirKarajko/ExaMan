@@ -1,5 +1,20 @@
+#pragma once
 #ifndef BULLET_H
 #define BULLET_H
+
+#include <SFML/Graphics.hpp>
+
+// Bullet
+#include "Game/Data/Bullet/bulletLeft.h"
+#include "Game/Data/Bullet/bulletRight.h"
+sf::Texture bulletLeftTexture;
+sf::Texture bulletRightTexture;
+
+void loadBulletImages() {
+	bulletLeftTexture.loadFromMemory(bulletLeft_png, bulletLeft_png_size);
+	bulletRightTexture.loadFromMemory(bulletRight_png, bulletRight_png_size);
+}
+
 class Bullet
 {
 public:
@@ -47,4 +62,5 @@ public:
 	}
 
 };
+
 #endif

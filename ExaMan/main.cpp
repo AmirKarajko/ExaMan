@@ -160,11 +160,6 @@ sf::Texture lava2Texture;
 sf::Texture wallbgTexture;
 #include "Game/Data/BackGround/car.h"
 sf::Texture carTexture;
-// Bullet
-#include "Game/Data/Bullet/bulletLeft.h"
-#include "Game/Data/Bullet/bulletRight.h"
-sf::Texture bulletLeftTexture;
-sf::Texture bulletRightTexture;
 // Explosion
 #include "Game/Data/Explosion/small/smallexp0.h"
 #include "Game/Data/Explosion/small/smallexp1.h"
@@ -346,9 +341,9 @@ int main()
 	lava2Texture.loadFromMemory(lava2_png, lava2_png_size);
 	wallbgTexture.loadFromMemory(wall_png, wall_png_size);
 	carTexture.loadFromMemory(car_png, car_png_size);
-	// Bullet
-	bulletLeftTexture.loadFromMemory(bulletLeft_png, bulletLeft_png_size);
-	bulletRightTexture.loadFromMemory(bulletRight_png, bulletRight_png_size);
+	
+	loadBulletImages();
+
 	// Explosion
 	smallexp0Texture.loadFromMemory(smallexp0_png, smallexp0_png_size);
 	smallexp1Texture.loadFromMemory(smallexp1_png, smallexp1_png_size);
