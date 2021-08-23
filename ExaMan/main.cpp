@@ -24,59 +24,6 @@ using namespace std;
 // Textures
 #include "Game/Data/Icon/icon.h"
 
-// Player
-#include "Game/Data/Player/Idle/playerIdleRight.h"
-#include "Game/Data/Player/Idle/playerIdleLeft.h"
-#include "Game/Data/Player/Idle/playerIdleShootRight.h"
-#include "Game/Data/Player/Idle/playerIdleShootLeft.h"
-#include "Game/Data/Player/Walk/playerWalkRight1.h"
-#include "Game/Data/Player/Walk/playerWalkRight2.h"
-#include "Game/Data/Player/Walk/playerWalkRight3.h"
-#include "Game/Data/Player/Walk/playerWalkShootRight1.h"
-#include "Game/Data/Player/Walk/playerWalkShootRight2.h"
-#include "Game/Data/Player/Walk/playerWalkShootRight3.h"
-#include "Game/Data/Player/Walk/playerWalkLeft1.h"
-#include "Game/Data/Player/Walk/playerWalkLeft2.h"
-#include "Game/Data/Player/Walk/playerWalkLeft3.h"
-#include "Game/Data/Player/Walk/playerWalkShootLeft1.h"
-#include "Game/Data/Player/Walk/playerWalkShootLeft2.h"
-#include "Game/Data/Player/Walk/playerWalkShootLeft3.h"
-#include "Game/Data/Player/Jump/playerJumpRight.h"
-#include "Game/Data/Player/Jump/playerJumpLeft.h"
-#include "Game/Data/Player/Jump/playerJumpShootRight.h"
-#include "Game/Data/Player/Jump/playerJumpShootLeft.h"
-#include "Game/Data/Player/Damage/playerDamageLeft.h"
-#include "Game/Data/Player/Damage/playerDamageRight.h"
-#include "Game/Data/Player/Death/playerDeath1Left.h"
-#include "Game/Data/Player/Death/playerDeath2Left.h"
-#include "Game/Data/Player/Death/playerDeath1Right.h"
-#include "Game/Data/Player/Death/playerDeath2Right.h"
-sf::Texture playerIdleRightTexture;
-sf::Texture playerIdleLeftTexture;
-sf::Texture playerIdleShootRightTexture;
-sf::Texture playerIdleShootLeftTexture;
-sf::Texture playerWalkRight1Texture;
-sf::Texture playerWalkRight2Texture;
-sf::Texture playerWalkRight3Texture;
-sf::Texture playerWalkShootRight1Texture;
-sf::Texture playerWalkShootRight2Texture;
-sf::Texture playerWalkShootRight3Texture;
-sf::Texture playerWalkLeft1Texture;
-sf::Texture playerWalkLeft2Texture;
-sf::Texture playerWalkLeft3Texture;
-sf::Texture playerWalkShootLeft1Texture;
-sf::Texture playerWalkShootLeft2Texture;
-sf::Texture playerWalkShootLeft3Texture;
-sf::Texture playerJumpLeftTexture;
-sf::Texture playerJumpRightTexture;
-sf::Texture playerJumpShootLeftTexture;
-sf::Texture playerJumpShootRightTexture;
-sf::Texture playerDamageLeftTexture;
-sf::Texture playerDamageRightTexture;
-sf::Texture playerDeath1LeftTexture;
-sf::Texture playerDeath2LeftTexture;
-sf::Texture playerDeath1RightTexture;
-sf::Texture playerDeath2RightTexture;
 // Item
 #include "Game/Data/Item/heart.h"
 sf::Texture heartTexture;
@@ -226,36 +173,9 @@ int main()
 	logoTexture.loadFromMemory(logo_jpg, logo_jpg_size);
 	
 	loadButtonImages();
-
-	// Players
-	playerIdleRightTexture.loadFromMemory(playerIdleRight_png, playerIdleRight_png_size);
-	playerIdleLeftTexture.loadFromMemory(playerIdleLeft_png, playerIdleLeft_png_size);
-	playerIdleShootRightTexture.loadFromMemory(playerIdleShootRight_png, playerIdleShootRight_png_size);
-	playerIdleShootLeftTexture.loadFromMemory(playerIdleShootLeft_png, playerIdleShootLeft_png_size);
-	playerWalkRight1Texture.loadFromMemory(playerWalkRight1_png, playerWalkRight1_png_size);
-	playerWalkRight2Texture.loadFromMemory(playerWalkRight2_png, playerWalkRight2_png_size);
-	playerWalkRight3Texture.loadFromMemory(playerWalkRight3_png, playerWalkRight3_png_size);
-	playerWalkShootRight1Texture.loadFromMemory(playerWalkShootRight1_png, playerWalkShootRight1_png_size);
-	playerWalkShootRight2Texture.loadFromMemory(playerWalkShootRight2_png, playerWalkShootRight2_png_size);
-	playerWalkShootRight3Texture.loadFromMemory(playerWalkShootRight3_png, playerWalkShootRight3_png_size);
-	playerWalkLeft1Texture.loadFromMemory(playerWalkLeft1_png, playerWalkLeft1_png_size);
-	playerWalkLeft2Texture.loadFromMemory(playerWalkLeft2_png, playerWalkLeft2_png_size);
-	playerWalkLeft3Texture.loadFromMemory(playerWalkLeft3_png, playerWalkLeft3_png_size);
-	playerWalkShootLeft1Texture.loadFromMemory(playerWalkShootLeft1_png, playerWalkShootLeft1_png_size);
-	playerWalkShootLeft2Texture.loadFromMemory(playerWalkShootLeft2_png, playerWalkShootLeft2_png_size);
-	playerWalkShootLeft3Texture.loadFromMemory(playerWalkShootLeft3_png, playerWalkShootLeft3_png_size);
-	playerJumpRightTexture.loadFromMemory(playerJumpRight_png, playerJumpRight_png_size);
-	playerJumpLeftTexture.loadFromMemory(playerJumpLeft_png, playerJumpLeft_png_size);
-	playerJumpShootRightTexture.loadFromMemory(playerJumpShootRight_png, playerJumpShootRight_png_size);
-	playerJumpShootLeftTexture.loadFromMemory(playerJumpShootLeft_png, playerJumpShootLeft_png_size);
-	playerDamageLeftTexture.loadFromMemory(playerDamageLeft_png, playerDamageLeft_png_size);
-	playerDamageRightTexture.loadFromMemory(playerDamageRight_png, playerDamageRight_png_size);
-	playerDeath1LeftTexture.loadFromMemory(playerDeath1Left_png, playerDeath1Left_png_size);
-	playerDeath2LeftTexture.loadFromMemory(playerDeath2Left_png, playerDeath2Left_png_size);
-	playerDeath1RightTexture.loadFromMemory(playerDeath1Right_png, playerDeath1Right_png_size);
-	playerDeath2RightTexture.loadFromMemory(playerDeath2Right_png, playerDeath2Right_png_size);
-	
+	loadPlayerImages();
 	loadKarateBossImages();
+
 	// Item
 	heartTexture.loadFromMemory(heart_png, heart_png_size);
 
