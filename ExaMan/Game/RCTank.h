@@ -1,5 +1,23 @@
+#pragma once
 #ifndef RCTANK_H
 #define RCTANK_H
+
+#include "Game/Data/RCTank/rctankleft1.h"
+#include "Game/Data/RCTank/rctankleft2.h"
+#include "Game/Data/RCTank/rctankright1.h"
+#include "Game/Data/RCTank/rctankright2.h"
+sf::Texture rctankleft1Texture;
+sf::Texture rctankleft2Texture;
+sf::Texture rctankright1Texture;
+sf::Texture rctankright2Texture;
+
+void loadRCTankImages() {
+	rctankleft1Texture.loadFromMemory(rctankleft1_png, rctankleft1_png_size);
+	rctankleft2Texture.loadFromMemory(rctankleft2_png, rctankleft2_png_size);
+	rctankright1Texture.loadFromMemory(rctankright1_png, rctankright1_png_size);
+	rctankright2Texture.loadFromMemory(rctankright2_png, rctankright2_png_size);
+}
+
 class RCTank
 {
 public:

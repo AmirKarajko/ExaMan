@@ -85,15 +85,6 @@ sf::Texture heartTexture;
 #include "Game/Data/RCHeli/rcheli2.h"
 sf::Texture rcheli1Texture;
 sf::Texture rcheli2Texture;
-// RC Tank
-#include "Game/Data/RCTank/rctankleft1.h"
-#include "Game/Data/RCTank/rctankleft2.h"
-#include "Game/Data/RCTank/rctankright1.h"
-#include "Game/Data/RCTank/rctankright2.h"
-sf::Texture rctankleft1Texture;
-sf::Texture rctankleft2Texture;
-sf::Texture rctankright1Texture;
-sf::Texture rctankright2Texture;
 // Objects
 #include "Game/Data/Object/box.h"
 #include "Game/Data/Object/ground.h"
@@ -277,11 +268,8 @@ int main()
 	// RC Heli
 	rcheli1Texture.loadFromMemory(rcheli1_png, rcheli1_png_size);
 	rcheli2Texture.loadFromMemory(rcheli2_png, rcheli2_png_size);
-	// RC Tank
-	rctankleft1Texture.loadFromMemory(rctankleft1_png, rctankleft1_png_size);
-	rctankleft2Texture.loadFromMemory(rctankleft2_png, rctankleft2_png_size);
-	rctankright1Texture.loadFromMemory(rctankright1_png, rctankright1_png_size);
-	rctankright2Texture.loadFromMemory(rctankright2_png, rctankright2_png_size);
+	
+	loadRCTankImages();
 	// Objects
 	boxTexture.loadFromMemory(box_png, box_png_size);
 	groundTexture.loadFromMemory(ground_png, ground_png_size);
