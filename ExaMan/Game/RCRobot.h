@@ -1,5 +1,29 @@
+#pragma once
 #ifndef RCROBOT_H
 #define RCROBOT_H
+
+#include "Game/Data/RCRobot/rcrobotidleleft.h"
+#include "Game/Data/RCRobot/rcrobotidleright.h"
+#include "Game/Data/RCRobot/rcrobotwalkleft1.h"
+#include "Game/Data/RCRobot/rcrobotwalkleft2.h"
+#include "Game/Data/RCRobot/rcrobotwalkright1.h"
+#include "Game/Data/RCRobot/rcrobotwalkright2.h"
+sf::Texture rcrobotidleleftTexture;
+sf::Texture rcrobotidlerightTexture;
+sf::Texture rcrobotwalkleft1Texture;
+sf::Texture rcrobotwalkleft2Texture;
+sf::Texture rcrobotwalkright1Texture;
+sf::Texture rcrobotwalkright2Texture;
+
+void loadRCRobotImages() {
+	rcrobotidleleftTexture.loadFromMemory(rcrobotidleleft_png, rcrobotidleleft_png_size);
+	rcrobotidlerightTexture.loadFromMemory(rcrobotidleright_png, rcrobotidleright_png_size);
+	rcrobotwalkleft1Texture.loadFromMemory(rcrobotwalkleft1_png, rcrobotwalkleft1_png_size);
+	rcrobotwalkleft2Texture.loadFromMemory(rcrobotwalkleft2_png, rcrobotwalkleft2_png_size);
+	rcrobotwalkright1Texture.loadFromMemory(rcrobotwalkright1_png, rcrobotwalkright1_png_size);
+	rcrobotwalkright2Texture.loadFromMemory(rcrobotwalkright2_png, rcrobotwalkright2_png_size);
+}
+
 class RCRobot
 {
 public:
