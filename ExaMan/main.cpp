@@ -262,7 +262,7 @@ int main()
 	sf::Text aText;
 	aText.setFont(font);
 	aText.setCharacterSize(52);
-	string info = "EXA MAN V1.0\nPROGRAMMER:\nAMIR KARAJKO\n\nCOPYRIGHT (C) 2018";
+	string info = "EXA MAN V1.0\nPROGRAMMER:\nAMIR KARAJKO\n\nCOPYRIGHT (C) 2018 - 2021";
 	aText.setString(info);
 	aText.setPosition(50, 150);
 
