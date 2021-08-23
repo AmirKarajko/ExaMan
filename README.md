@@ -32,7 +32,7 @@ sfml-system-d.lib
 
 ## Converting images to C source files
 
-To convert images to C source files you will need bin2c converter.
+To convert images to C source files you will need **bin2c converter**.
 
 Open CMD and change directory location to bin2c unzipped folder -> Type: bin2c -o MyImage.h Image.png
 
@@ -43,4 +43,4 @@ Download link: https://sourceforge.net/projects/bin2c
 Music: https://opengameart.org/users/wyver9
 Font: https://www.1001freefonts.com/computer-robot.font
 
-# Copyright 2018 - 2021
+# Copyright © 2018 - 2021
