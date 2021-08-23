@@ -81,19 +81,6 @@ sf::Texture playerDeath1LeftTexture;
 sf::Texture playerDeath2LeftTexture;
 sf::Texture playerDeath1RightTexture;
 sf::Texture playerDeath2RightTexture;
-// Karate Boss
-#include "Game/Data/KarateBoss/bossattack1.h"
-#include "Game/Data/KarateBoss/bossattack2.h"
-#include "Game/Data/KarateBoss/bossattack3.h"
-#include "Game/Data/KarateBoss/bossattack4.h"
-#include "Game/Data/KarateBoss/bossIdleLeft.h"
-#include "Game/Data/KarateBoss/bossIdleRight.h"
-sf::Texture bossattack1Texture;
-sf::Texture bossattack2Texture;
-sf::Texture bossattack3Texture;
-sf::Texture bossattack4Texture;
-sf::Texture bossIdleLeftTexture;
-sf::Texture bossIdleRightTexture;
 // Item
 #include "Game/Data/Item/heart.h"
 sf::Texture heartTexture;
@@ -303,13 +290,8 @@ int main()
 	playerDeath2LeftTexture.loadFromMemory(playerDeath2Left_png, playerDeath2Left_png_size);
 	playerDeath1RightTexture.loadFromMemory(playerDeath1Right_png, playerDeath1Right_png_size);
 	playerDeath2RightTexture.loadFromMemory(playerDeath2Right_png, playerDeath2Right_png_size);
-	// Karate Boss
-	bossattack1Texture.loadFromMemory(bossattack1_png, bossattack1_png_size);
-	bossattack2Texture.loadFromMemory(bossattack2_png, bossattack2_png_size);
-	bossattack3Texture.loadFromMemory(bossattack3_png, bossattack3_png_size);
-	bossattack4Texture.loadFromMemory(bossattack4_png, bossattack4_png_size);
-	bossIdleLeftTexture.loadFromMemory(bossIdleLeft_png, bossIdleLeft_png_size);
-	bossIdleRightTexture.loadFromMemory(bossIdleRight_png, bossIdleRight_png_size);
+	
+	loadKarateBossImages();
 	// Item
 	heartTexture.loadFromMemory(heart_png, heart_png_size);
 	// RC Robot
