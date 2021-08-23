@@ -80,11 +80,6 @@ sf::Texture playerDeath2RightTexture;
 // Item
 #include "Game/Data/Item/heart.h"
 sf::Texture heartTexture;
-// RC Heli
-#include "Game/Data/RCHeli/rcheli1.h"
-#include "Game/Data/RCHeli/rcheli2.h"
-sf::Texture rcheli1Texture;
-sf::Texture rcheli2Texture;
 // Objects
 #include "Game/Data/Object/box.h"
 #include "Game/Data/Object/ground.h"
@@ -264,12 +259,10 @@ int main()
 	// Item
 	heartTexture.loadFromMemory(heart_png, heart_png_size);
 
+	loadRCHeliImages();
 	loadRCRobotImages();
-	// RC Heli
-	rcheli1Texture.loadFromMemory(rcheli1_png, rcheli1_png_size);
-	rcheli2Texture.loadFromMemory(rcheli2_png, rcheli2_png_size);
-	
 	loadRCTankImages();
+
 	// Objects
 	boxTexture.loadFromMemory(box_png, box_png_size);
 	groundTexture.loadFromMemory(ground_png, ground_png_size);
