@@ -110,11 +110,6 @@ sf::Texture rcrobotwalkleft1Texture;
 sf::Texture rcrobotwalkleft2Texture;
 sf::Texture rcrobotwalkright1Texture;
 sf::Texture rcrobotwalkright2Texture;
-// RC Heli
-#include "Game/Data/RCHeli/rcheli1.h"
-#include "Game/Data/RCHeli/rcheli2.h"
-sf::Texture rcheli1Texture;
-sf::Texture rcheli2Texture;
 // RC Tank
 #include "Game/Data/RCTank/rctankleft1.h"
 #include "Game/Data/RCTank/rctankleft2.h"
@@ -319,9 +314,8 @@ int main()
 	rcrobotwalkleft2Texture.loadFromMemory(rcrobotwalkleft2_png, rcrobotwalkleft2_png_size);
 	rcrobotwalkright1Texture.loadFromMemory(rcrobotwalkright1_png, rcrobotwalkright1_png_size);
 	rcrobotwalkright2Texture.loadFromMemory(rcrobotwalkright2_png, rcrobotwalkright2_png_size);
-	// RC Heli
-	rcheli1Texture.loadFromMemory(rcheli1_png, rcheli1_png_size);
-	rcheli2Texture.loadFromMemory(rcheli2_png, rcheli2_png_size);
+	
+	loadRCHeliImages();
 	// RC Tank
 	rctankleft1Texture.loadFromMemory(rctankleft1_png, rctankleft1_png_size);
 	rctankleft2Texture.loadFromMemory(rctankleft2_png, rctankleft2_png_size);

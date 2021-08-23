@@ -1,5 +1,17 @@
+#pragma once
 #ifndef RCHELI_H
 #define RCHELI_H
+
+#include "Game/Data/RCHeli/rcheli1.h"
+#include "Game/Data/RCHeli/rcheli2.h"
+sf::Texture rcheli1Texture;
+sf::Texture rcheli2Texture;
+
+void loadRCHeliImages() {
+	rcheli1Texture.loadFromMemory(rcheli1_png, rcheli1_png_size);
+	rcheli2Texture.loadFromMemory(rcheli2_png, rcheli2_png_size);
+}
+
 class RCHeli
 {
 public:
