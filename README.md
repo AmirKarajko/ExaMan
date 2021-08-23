@@ -4,12 +4,12 @@ In the year of 50XX, a cyborg known as an Exa Man was created. He has a mission 
 
 Programmer: Amir Karajko
 
-// facebook pages
+## facebook pages
 
 https://www.facebook.com/AmirProgrammer/
 https://www.facebook.com/ExaManGame
 
-How to play
+## How to play
 
 A, D - move
 J - jump
