@@ -245,6 +245,7 @@
     <ClInclude Include="Game\Screens\ScreenEnum.h" />
     <ClInclude Include="Game\Screens\MenuScreen.h" />
     <ClInclude Include="Game\Screens\Screen.h" />
+    <ClInclude Include="Game\Screens\QuitScreen.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ExaMan.rc" />
