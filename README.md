@@ -11,10 +11,10 @@ https://www.facebook.com/ExaManGame
 
 ## How to play
 
-A, D - move
-J - jump
-K - shoot
-Escape - quit (exit) game
+* A, D - move
+* J - jump
+* K - shoot
+* Escape - quit (exit) game
 
 # Project Configuration
 
@@ -25,10 +25,10 @@ The project is created in SFML 2.5.1 and the tutorial for setting up SFML projec
 Go to project properties and open "VC++ Directories". Include the SFML 2.5.1 "include" directory and add SFML "lib" to library directories.
 
 Linker -> Input -> Additional Dependencies:
-sfml-graphics-d.lib
-sfml-audio-d.lib
-sfml-window-d.lib
-sfml-system-d.lib
+* sfml-graphics-d.lib
+* sfml-audio-d.lib
+* sfml-window-d.lib
+* sfml-system-d.lib
 
 ## Converting images to C source files
 
