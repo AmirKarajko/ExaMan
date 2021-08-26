@@ -91,7 +91,13 @@ sf::Texture backgroundTexture;
 #include "Game/Data/logo.h"
 sf::Texture logoTexture;
 
-#include "Game/ScreenEnum.h";
+// Font
+sf::Font font;
+
+#include "Game/Screens/ScreenEnum.h";
+#include "Game/Screens/MenuScreen.h";
+
+MenuScreen menuScreen;
 
 // Map
 Map gameMap(0);
@@ -118,14 +124,11 @@ int main()
 	window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 
 	// Font
-	sf::Font font;
 	font.loadFromMemory(COMPUTERRobot_ttf, COMPUTERRobot_ttf_size);
-	// Title text
-	sf::Text titleText;
-	titleText.setString("EXA MAN");
-	titleText.setFont(font);
-	titleText.setCharacterSize(128);
-	titleText.setPosition(50, -50);
+
+	// Menu
+	menuScreen = MenuScreen(font);
+
 	// Quit text
 	sf::Text quitText;
 	quitText.setString("QUIT GAME");
@@ -510,48 +513,8 @@ int main()
 			}
 			window.draw(sprite);
 
-
 			switch (buttons[i].getId())
 			{
-			case 0:
-			{
-				if (screen == MENU)
-				{
-					sf::Text playText;
-					playText.setFont(font);
-					playText.setCharacterSize(87);
-					playText.setString("PLAY");
-					playText.setPosition(buttons[i].position.x + ((buttonInactiveTexture.getSize().x / 2) - (playText.getLocalBounds().width / 2)), buttons[i].position.y - ((buttonInactiveTexture.getSize().y / 2) - (playText.getLocalBounds().height + 20)));
-					window.draw(playText);
-				}
-			}
-			break;
-			case 1:
-			{
-				if (screen == MENU)
-				{
-					sf::Text exitText;
-					exitText.setFont(font);
-					exitText.setCharacterSize(87);
-					exitText.setString("EXIT");
-					exitText.setPosition(buttons[i].position.x + ((buttonInactiveTexture.getSize().x / 2) - (exitText.getLocalBounds().width / 2)), buttons[i].position.y - ((buttonInactiveTexture.getSize().y / 2) - (exitText.getLocalBounds().height + 20)));
-					window.draw(exitText);
-				}
-			}
-			break;
-			case 2:
-			{
-				if (screen == MENU)
-				{
-					sf::Text aboutText;
-					aboutText.setFont(font);
-					aboutText.setCharacterSize(87);
-					aboutText.setString("ABOUT");
-					aboutText.setPosition(buttons[i].position.x + ((buttonInactiveTexture.getSize().x / 2) - (aboutText.getLocalBounds().width / 2)), buttons[i].position.y - ((buttonInactiveTexture.getSize().y / 2) - (aboutText.getLocalBounds().height + 20)));
-					window.draw(aboutText);
-				}
-			}
-			break;
 			case 3:
 			{
 				if (screen == ABOUT || screen == CREDITS)
@@ -588,19 +551,6 @@ int main()
 					noText.setString("NO");
 					noText.setPosition(buttons[i].position.x + ((buttonInactiveTexture.getSize().x / 2) - (noText.getLocalBounds().width / 2)), buttons[i].position.y - ((buttonInactiveTexture.getSize().y / 2) - (noText.getLocalBounds().height + 20)));
 					window.draw(noText);
-				}
-			}
-			break;
-			case 6:
-			{
-				if (screen == MENU)
-				{
-					sf::Text creditsText;
-					creditsText.setFont(font);
-					creditsText.setCharacterSize(87);
-					creditsText.setString("CREDITS");
-					creditsText.setPosition(buttons[i].position.x + ((buttonInactiveTexture.getSize().x / 2) - (creditsText.getLocalBounds().width / 2)), buttons[i].position.y - ((buttonInactiveTexture.getSize().y / 2) - (creditsText.getLocalBounds().height + 20)));
-					window.draw(creditsText);
 				}
 			}
 			break;
@@ -649,10 +599,8 @@ int main()
 			window.draw(aText);
 			break;
 		case MENU:
-			// View
 			window.setView(menuView);
-			// Text
-			window.draw(titleText);
+			menuScreen.draw(window);
 			break;
 		case GAME:
 			// View

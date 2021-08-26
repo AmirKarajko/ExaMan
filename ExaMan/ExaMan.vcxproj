@@ -242,7 +242,9 @@
     <ClInclude Include="Game\RCHeli.h" />
     <ClInclude Include="Game\RCRobot.h" />
     <ClInclude Include="Game\RCTank.h" />
-    <ClInclude Include="Game\ScreenEnum.h" />
+    <ClInclude Include="Game\Screens\ScreenEnum.h" />
+    <ClInclude Include="Game\Screens\MenuScreen.h" />
+    <ClInclude Include="Game\Screens\Screen.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ExaMan.rc" />
