@@ -1,13 +1,13 @@
 #pragma once
-#ifndef QUITSCREEN_H
-#define QUITSCREEN_H
+#ifndef PAUSESCREEN_H
+#define PAUSESCREEN_H
 
 #include "SFML/Graphics.hpp";
 
 #include "Game/Screens/Screen.h";
 #include "Game/Button.h";
 
-class QuitScreen : public Screen {
+class PauseScreen : public Screen {
 private:
 	Button yesButton;
 	Button noButton;
@@ -23,15 +23,15 @@ private:
 	}
 
 public:
-	QuitScreen() : Screen() {};
+	PauseScreen() : Screen() {};
 
-	QuitScreen(sf::Font font) : Screen(font) {
+	PauseScreen(sf::Font font) : Screen(font) {
 		init();
 	};
 
 	void draw(sf::RenderWindow& window) override {
 		sf::Text quitText;
-		quitText.setString("EXIT GAME");
+		quitText.setString("QUIT GAME");
 		quitText.setFont(font);
 		quitText.setCharacterSize(128);
 		quitText.setPosition(50, -50);

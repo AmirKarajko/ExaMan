@@ -97,9 +97,11 @@ sf::Font font;
 #include "Game/Screens/ScreenEnum.h";
 #include "Game/Screens/MenuScreen.h";
 #include "Game/Screens/QuitScreen.h";
+#include "Game/Screens/PauseScreen.h";
 
 MenuScreen menuScreen;
 QuitScreen quitScreen;
+PauseScreen pauseScreen;
 
 // Map
 Map gameMap(0);
@@ -131,12 +133,7 @@ int main()
 	// Screens
 	menuScreen = MenuScreen(font);
 	quitScreen = QuitScreen(font);
-
-	sf::Text quitText;
-	quitText.setString("QUIT GAME");
-	quitText.setFont(font);
-	quitText.setCharacterSize(128);
-	quitText.setPosition(50, -50);
+	pauseScreen = PauseScreen(font);
 
 	// Exit text
 	sf::Text exitText;
@@ -589,10 +586,8 @@ int main()
 			quitScreen.draw(window);
 			break;
 		case PAUSE:
-			// View
 			window.setView(menuView);
-			// Text
-			window.draw(quitText);
+			pauseScreen.draw(window);
 			break;
 		case ABOUT:
 			// Text
