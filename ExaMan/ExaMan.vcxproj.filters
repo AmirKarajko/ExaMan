@@ -79,6 +79,9 @@
     <Filter Include="Header Files\Game\Data\RCTank">
       <UniqueIdentifier>{ea25c689-24b9-42ee-9bd0-8a2f6add77ba}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Game\Screens">
+      <UniqueIdentifier>{6c462deb-f69d-4e27-9a3c-0fb4e486b45c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -368,8 +371,26 @@
     <ClInclude Include="Game\Music.h">
       <Filter>Header Files\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Game\ScreenEnum.h">
-      <Filter>Header Files\Game</Filter>
+    <ClInclude Include="Game\Screens\ScreenEnum.h">
+      <Filter>Header Files\Game\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Screens\MenuScreen.h">
+      <Filter>Header Files\Game\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Screens\Screen.h">
+      <Filter>Header Files\Game\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Screens\QuitScreen.h">
+      <Filter>Header Files\Game\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Screens\PauseScreen.h">
+      <Filter>Header Files\Game\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Screens\AboutGameScreen.h">
+      <Filter>Header Files\Game\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Screens\CreditsScreen.h">
+      <Filter>Header Files\Game\Screens</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

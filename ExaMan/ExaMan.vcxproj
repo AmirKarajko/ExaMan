@@ -148,6 +148,8 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Game\Screens\CreditsScreen.h" />
+    <ClInclude Include="Game\Screens\AboutGameScreen.h" />
     <ClInclude Include="Game\Bullet.h" />
     <ClInclude Include="Game\Button.h" />
     <ClInclude Include="Game\Data\backgroundimage.h" />
@@ -242,7 +244,11 @@
     <ClInclude Include="Game\RCHeli.h" />
     <ClInclude Include="Game\RCRobot.h" />
     <ClInclude Include="Game\RCTank.h" />
-    <ClInclude Include="Game\ScreenEnum.h" />
+    <ClInclude Include="Game\Screens\ScreenEnum.h" />
+    <ClInclude Include="Game\Screens\MenuScreen.h" />
+    <ClInclude Include="Game\Screens\Screen.h" />
+    <ClInclude Include="Game\Screens\QuitScreen.h" />
+    <ClInclude Include="Game\Screens\PauseScreen.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ExaMan.rc" />

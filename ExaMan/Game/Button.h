@@ -5,7 +5,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "Music.h";
-#include "ScreenEnum.h";
+#include "Game/Screens/ScreenEnum.h";
 
 #include "Game/Data/Button/active.h"
 #include "Game/Data/Button/hover.h"
