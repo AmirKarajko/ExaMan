@@ -98,10 +98,14 @@ sf::Font font;
 #include "Game/Screens/MenuScreen.h";
 #include "Game/Screens/QuitScreen.h";
 #include "Game/Screens/PauseScreen.h";
+#include "Game/Screens/AboutGameScreen.h";
+#include "Game/Screens/CreditsScreen.h";
 
 MenuScreen menuScreen;
 QuitScreen quitScreen;
 PauseScreen pauseScreen;
+AboutGameScreen aboutGameScreen;
+CreditsScreen creditsScreen;
 
 // Map
 Map gameMap(0);
@@ -134,40 +138,8 @@ int main()
 	menuScreen = MenuScreen(font);
 	quitScreen = QuitScreen(font);
 	pauseScreen = PauseScreen(font);
-
-	// Exit text
-	sf::Text exitText;
-	exitText.setString("EXIT GAME");
-	exitText.setFont(font);
-	exitText.setCharacterSize(128);
-	exitText.setPosition(50, -50);
-	// About text
-	sf::Text aboutText;
-	aboutText.setString("ABOUT");
-	aboutText.setFont(font);
-	aboutText.setCharacterSize(128);
-	aboutText.setPosition(50, -50);
-	// Credits text
-	sf::Text creditsTitle;
-	creditsTitle.setString("CREDITS");
-	creditsTitle.setFont(font);
-	creditsTitle.setCharacterSize(128);
-	creditsTitle.setPosition(50, -50);
-
-	sf::Text cText;
-	cText.setFont(font);
-	cText.setCharacterSize(52);
-	string credits = "MUSIC BY: wyver9\nFONT BY: weknow";
-	cText.setString(credits);
-	cText.setPosition(50, 150);
-
-	// Info
-	sf::Text aText;
-	aText.setFont(font);
-	aText.setCharacterSize(52);
-	string info = "EXA MAN V1.0\nPROGRAMMER:\nAMIR KARAJKO\n\nCOPYRIGHT (C) 2018 - 2021";
-	aText.setString(info);
-	aText.setPosition(50, 150);
+	aboutGameScreen = AboutGameScreen(font);
+	creditsScreen = CreditsScreen(font);
 
 	// Textures
 	// Background
@@ -512,50 +484,6 @@ int main()
 				break;
 			}
 			window.draw(sprite);
-
-			switch (buttons[i].getId())
-			{
-			case 3:
-			{
-				if (screen == ABOUT || screen == CREDITS)
-				{
-					sf::Text backText;
-					backText.setFont(font);
-					backText.setCharacterSize(87);
-					backText.setString("BACK");
-					backText.setPosition(buttons[i].position.x + ((buttonInactiveTexture.getSize().x / 2) - (backText.getLocalBounds().width / 2)), buttons[i].position.y - ((buttonInactiveTexture.getSize().y / 2) - (backText.getLocalBounds().height + 20)));
-					window.draw(backText);
-				}
-			}
-			break;
-			case 4:
-			{
-				if (screen == PAUSE || screen == EXIT)
-				{
-					sf::Text yesText;
-					yesText.setFont(font);
-					yesText.setCharacterSize(87);
-					yesText.setString("YES");
-					yesText.setPosition(buttons[i].position.x + ((buttonInactiveTexture.getSize().x / 2) - (yesText.getLocalBounds().width / 2)), buttons[i].position.y - ((buttonInactiveTexture.getSize().y / 2) - (yesText.getLocalBounds().height + 20)));
-					window.draw(yesText);
-				}
-			}
-			break;
-			case 5:
-			{
-				if (screen == PAUSE || screen == EXIT)
-				{
-					sf::Text noText;
-					noText.setFont(font);
-					noText.setCharacterSize(87);
-					noText.setString("NO");
-					noText.setPosition(buttons[i].position.x + ((buttonInactiveTexture.getSize().x / 2) - (noText.getLocalBounds().width / 2)), buttons[i].position.y - ((buttonInactiveTexture.getSize().y / 2) - (noText.getLocalBounds().height + 20)));
-					window.draw(noText);
-				}
-			}
-			break;
-			}
-
 		}
 
 		switch (screen)
@@ -578,8 +506,7 @@ int main()
 		}
 		break;
 		case CREDITS:
-			window.draw(creditsTitle);
-			window.draw(cText);
+			creditsScreen.draw(window);
 			break;
 		case EXIT:
 			window.setView(menuView);
@@ -590,9 +517,7 @@ int main()
 			pauseScreen.draw(window);
 			break;
 		case ABOUT:
-			// Text
-			window.draw(aboutText);
-			window.draw(aText);
+			aboutGameScreen.draw(window);
 			break;
 		case MENU:
 			window.setView(menuView);

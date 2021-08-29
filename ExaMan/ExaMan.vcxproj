@@ -148,6 +148,8 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Game\Screens\CreditsScreen.h" />
+    <ClInclude Include="Game\Screens\AboutGameScreen.h" />
     <ClInclude Include="Game\Bullet.h" />
     <ClInclude Include="Game\Button.h" />
     <ClInclude Include="Game\Data\backgroundimage.h" />

@@ -386,6 +386,12 @@
     <ClInclude Include="Game\Screens\PauseScreen.h">
       <Filter>Header Files\Game\Screens</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Screens\AboutGameScreen.h">
+      <Filter>Header Files\Game\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Screens\CreditsScreen.h">
+      <Filter>Header Files\Game\Screens</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ExaMan.rc">

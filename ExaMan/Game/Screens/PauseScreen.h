@@ -18,8 +18,8 @@ private:
 		this->yesButton.dimension = sf::Vector2f(buttonInactiveTexture.getSize().x, buttonInactiveTexture.getSize().y);
 
 		this->noButton = Button(5);
-		this->yesButton.position = sf::Vector2f(20, 620);
-		this->yesButton.dimension = sf::Vector2f(buttonInactiveTexture.getSize().x, buttonInactiveTexture.getSize().y);
+		this->noButton.position = sf::Vector2f(20, 620);
+		this->noButton.dimension = sf::Vector2f(buttonInactiveTexture.getSize().x, buttonInactiveTexture.getSize().y);
 	}
 
 public:
@@ -36,7 +36,25 @@ public:
 		quitText.setCharacterSize(128);
 		quitText.setPosition(50, -50);
 
+		sf::Text yesText;
+		yesText.setFont(font);
+		yesText.setCharacterSize(87);
+		yesText.setString("YES");
+		yesText.setPosition(
+			this->yesButton.position.x + ((buttonInactiveTexture.getSize().x / 2) - (yesText.getLocalBounds().width / 2)),
+			this->yesButton.position.y - ((buttonInactiveTexture.getSize().y / 2) - (yesText.getLocalBounds().height + 20)));
+
+		sf::Text noText;
+		noText.setFont(font);
+		noText.setCharacterSize(87);
+		noText.setString("NO");
+		noText.setPosition(
+			this->noButton.position.x + ((buttonInactiveTexture.getSize().x / 2) - (noText.getLocalBounds().width / 2)),
+			this->noButton.position.y - ((buttonInactiveTexture.getSize().y / 2) - (noText.getLocalBounds().height + 20)));
+
 		window.draw(quitText);
+		window.draw(yesText);
+		window.draw(noText);
 	}
 };
 
