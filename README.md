@@ -11,10 +11,11 @@ https://www.facebook.com/ExaManGame
 
 ## How to play
 
-* A, D - move
-* J - jump
-* K - shoot
-* Escape - quit (exit) game
+* A - Move Left
+* D - Move right
+* J - Jump
+* K - Shoot
+* Escape - Quit (exit) game
 
 # Project Configuration
 
