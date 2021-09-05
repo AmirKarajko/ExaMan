@@ -449,8 +449,74 @@ public:
 		window.draw(sprite);
 	}
 
-	void update(std::vector<GameObject> &objects)
+	void update(std::vector<GameObject> &objects, int& playerLives)
 	{
+		if (damage)
+		{
+			moveLeft = false;
+			moveRight = false;
+			jump = false;
+			shoot = false;
+			if (damageCounter < 25)
+			{
+				damageCounter++;
+			}
+			else
+			{
+				if (playerLives > 0)
+				{
+					playerLives--;
+					damage = false;
+					damageCounter = 0;
+					if (!shield)
+					{
+						shield = true;
+					}
+				}
+				else
+				{
+					if (!gameover)
+					{
+						gameover = true;
+					}
+					death = true;
+				}
+			}
+		}
+		else
+		{
+			if (shield)
+			{
+				if (shieldCounter < 100)
+				{
+					if (visibilityCounter < 5)
+					{
+						visibilityCounter++;
+					}
+					else
+					{
+						if (visible)
+						{
+							visible = false;
+						}
+						else
+						{
+							visible = true;
+						}
+						visibilityCounter = 0;
+					}
+					shieldCounter++;
+				}
+				else
+				{
+					shield = false;
+					visible = true;
+					shieldCounter = 0;
+				}
+			}
+		}
+
+
 		position = collisionPosition;
 		control();
 		sprite = sf::Sprite();

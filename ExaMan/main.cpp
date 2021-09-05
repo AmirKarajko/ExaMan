@@ -1157,72 +1157,8 @@ int main()
 			}
 
 			gameMap.player.draw(window, gameMap.bullets);
-			
-			if (gameMap.player.damage)
-			{
-				gameMap.player.moveLeft = false;
-				gameMap.player.moveRight = false;
-				gameMap.player.jump = false;
-				gameMap.player.shoot = false;
-				if (gameMap.player.damageCounter < 25)
-				{
-					gameMap.player.damageCounter++;
-				}
-				else
-				{
-					if (playerLives > 0)
-					{
-						playerLives--;
-						gameMap.player.damage = false;
-						gameMap.player.damageCounter = 0;
-						if (!gameMap.player.shield)
-						{
-							gameMap.player.shield = true;
-						}
-					}
-					else
-					{
-						if (!gameMap.player.gameover)
-						{
-							gameMap.player.gameover = true;
-						}
-						gameMap.player.death = true;
-					}
-				}
-			}
-			else
-			{
-				if (gameMap.player.shield)
-				{
-					if (gameMap.player.shieldCounter < 100)
-					{
-						if (gameMap.player.visibilityCounter < 5)
-						{
-							gameMap.player.visibilityCounter++;
-						}
-						else
-						{
-							if (gameMap.player.visible)
-							{
-								gameMap.player.visible = false;
-							}
-							else
-							{
-								gameMap.player.visible = true;
-							}
-							gameMap.player.visibilityCounter = 0;
-						}
-						gameMap.player.shieldCounter++;
-					}
-					else
-					{
-						gameMap.player.shield = false;
-						gameMap.player.visible = true;
-						gameMap.player.shieldCounter = 0;
-					}
-				}
-			}
-			gameMap.player.update(gameMap.objects);
+			gameMap.player.update(gameMap.objects, playerLives);
+
 			// Game Over
 			if (gameMap.player.gameover)
 			{
