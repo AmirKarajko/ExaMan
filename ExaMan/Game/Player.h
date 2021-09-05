@@ -2,6 +2,12 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+#include <vector>
+
+using namespace std;
+
+#include <SFML/Graphics.hpp>
+
 #include "Game/Data/Player/Idle/playerIdleRight.h"
 #include "Game/Data/Player/Idle/playerIdleLeft.h"
 #include "Game/Data/Player/Idle/playerIdleShootRight.h"
@@ -191,8 +197,326 @@ public:
 		}
 	}
 
-	void update(std::vector<GameObject> &objects)
+	void draw(sf::RenderWindow& window, vector<Bullet>& bullets) {
+		// Player Control
+		if (shoot)
+		{
+			if (shootCounter <= 0)
+			{
+				if (direction == LEFT)
+					bullets.push_back(Bullet(Bullet::PLAYERS, direction, sf::Vector2f(position.x - 8, position.y + 14)));
+				if (direction == RIGHT)
+					bullets.push_back(Bullet(Bullet::PLAYERS, direction, sf::Vector2f(position.x + 32, position.y + 14)));
+				shootCounter = 10;
+			}
+			else
+			{
+				shootCounter--;
+			}
+		}
+		else
+		{
+			shootCounter = 0;
+		}
+
+		// Player draw
+		if (visible)
+		{
+			if (!damage)
+			{
+				if (onGround)
+				{
+					if (!shoot)
+					{
+						switch (state)
+						{
+						case IDLE:
+							switch (direction)
+							{
+							case RIGHT:
+								sprite.setTexture(playerIdleRightTexture);
+								break;
+							case LEFT:
+								sprite.setTexture(playerIdleLeftTexture);
+								break;
+							default:
+								break;
+							}
+							break;
+						case WALK:
+							switch (direction)
+							{
+							case RIGHT:
+								switch (spriteId)
+								{
+								case 0:
+									sprite.setTexture(playerWalkRight1Texture);
+									break;
+								case 1:
+									sprite.setTexture(playerWalkRight2Texture);
+									break;
+								case 2:
+									sprite.setTexture(playerWalkRight3Texture);
+									break;
+								default:
+									break;
+								}
+								break;
+							case LEFT:
+								switch (spriteId)
+								{
+								case 0:
+									sprite.setTexture(playerWalkLeft1Texture);
+									break;
+								case 1:
+									sprite.setTexture(playerWalkLeft2Texture);
+									break;
+								case 2:
+									sprite.setTexture(playerWalkLeft3Texture);
+									break;
+								default:
+									break;
+								}
+								break;
+							default:
+								break;
+							}
+							break;
+						default:
+							break;
+						}
+					}
+					else
+					{
+						switch (state)
+						{
+						case IDLE:
+							switch (direction)
+							{
+							case RIGHT:
+								sprite.setTexture(playerIdleShootRightTexture);
+								break;
+							case LEFT:
+								sprite.setTexture(playerIdleShootLeftTexture);
+								break;
+							default:
+								break;
+							}
+							break;
+						case WALK:
+							switch (direction)
+							{
+							case RIGHT:
+								switch (spriteId)
+								{
+								case 0:
+									sprite.setTexture(playerWalkShootRight1Texture);
+									break;
+								case 1:
+									sprite.setTexture(playerWalkShootRight2Texture);
+									break;
+								case 2:
+									sprite.setTexture(playerWalkShootRight3Texture);
+									break;
+								default:
+									break;
+								}
+								break;
+							case LEFT:
+								switch (spriteId)
+								{
+								case 0:
+									sprite.setTexture(playerWalkShootLeft1Texture);
+									break;
+								case 1:
+									sprite.setTexture(playerWalkShootLeft2Texture);
+									break;
+								case 2:
+									sprite.setTexture(playerWalkShootLeft3Texture);
+									break;
+								default:
+									break;
+								}
+								break;
+							default:
+								break;
+							}
+							break;
+						default:
+							break;
+						}
+					}
+				}
+				else
+				{
+					if (!shoot)
+					{
+						switch (direction)
+						{
+						case RIGHT:
+							sprite.setTexture(playerJumpRightTexture);
+							break;
+						case LEFT:
+							sprite.setTexture(playerJumpLeftTexture);
+							break;
+						default:
+							break;
+						}
+					}
+					else
+					{
+						switch (direction)
+						{
+						case RIGHT:
+							sprite.setTexture(playerJumpShootRightTexture);
+							break;
+						case LEFT:
+							sprite.setTexture(playerJumpShootLeftTexture);
+							break;
+						default:
+							break;
+						}
+					}
+				}
+			}
+			else
+			{
+				if (!death)
+				{
+					switch (direction)
+					{
+					case Player::LEFT:
+						sprite.setTexture(playerDamageLeftTexture);
+						break;
+					case Player::RIGHT:
+						sprite.setTexture(playerDamageRightTexture);
+						break;
+					default:
+						break;
+					}
+				}
+				else
+				{
+					if (deathpose < 1)
+					{
+						if (deathposeCounter < 10)
+						{
+							deathposeCounter++;
+						}
+						else
+						{
+							deathpose++;
+							deathposeCounter = 0;
+						}
+					}
+					switch (direction)
+					{
+					case Player::LEFT:
+						switch (deathpose)
+						{
+						case 0:
+							sprite.setTexture(playerDeath1LeftTexture);
+							break;
+						case 1:
+							sprite.setTexture(playerDeath2LeftTexture);
+							break;
+						default:
+							break;
+						}
+						break;
+					case Player::RIGHT:
+						switch (deathpose)
+						{
+						case 0:
+							sprite.setTexture(playerDeath1RightTexture);
+							break;
+						case 1:
+							sprite.setTexture(playerDeath2RightTexture);
+							break;
+						default:
+							break;
+						}
+						break;
+					default:
+						break;
+					}
+				}
+
+			}
+		}
+		sprite.setPosition(position);
+
+		window.draw(sprite);
+	}
+
+	void update(std::vector<GameObject> &objects, int& playerLives)
 	{
+		if (damage)
+		{
+			moveLeft = false;
+			moveRight = false;
+			jump = false;
+			shoot = false;
+			if (damageCounter < 25)
+			{
+				damageCounter++;
+			}
+			else
+			{
+				if (playerLives > 0)
+				{
+					playerLives--;
+					damage = false;
+					damageCounter = 0;
+					if (!shield)
+					{
+						shield = true;
+					}
+				}
+				else
+				{
+					if (!gameover)
+					{
+						gameover = true;
+					}
+					death = true;
+				}
+			}
+		}
+		else
+		{
+			if (shield)
+			{
+				if (shieldCounter < 100)
+				{
+					if (visibilityCounter < 5)
+					{
+						visibilityCounter++;
+					}
+					else
+					{
+						if (visible)
+						{
+							visible = false;
+						}
+						else
+						{
+							visible = true;
+						}
+						visibilityCounter = 0;
+					}
+					shieldCounter++;
+				}
+				else
+				{
+					shield = false;
+					visible = true;
+					shieldCounter = 0;
+				}
+			}
+		}
+
+
 		position = collisionPosition;
 		control();
 		sprite = sf::Sprite();
