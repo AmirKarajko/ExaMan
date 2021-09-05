@@ -1528,14 +1528,8 @@ int main()
 		default:
 			break;
 		}
-		if (screen == GAME || screen == LOGO)
-		{
-			window.setMouseCursorVisible(false);
-		}
-		else
-		{
-			window.setMouseCursorVisible(true);
-		}
+
+		window.setMouseCursorVisible(screen != GAME && screen != LOGO);
 		window.display();
 	}
 
