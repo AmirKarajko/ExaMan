@@ -2,12 +2,12 @@
 #ifndef KARATEBOSS_H
 #define KARATEBOSS_H
 
-#include "Data/KarateBoss/bossattack1.h"
-#include "Data/KarateBoss/bossattack2.h"
-#include "Data/KarateBoss/bossattack3.h"
-#include "Data/KarateBoss/bossattack4.h"
-#include "Data/KarateBoss/bossIdleLeft.h"
-#include "Data/KarateBoss/bossIdleRight.h"
+#include "Game/Data/KarateBoss/bossattack1.h"
+#include "Game/Data/KarateBoss/bossattack2.h"
+#include "Game/Data/KarateBoss/bossattack3.h"
+#include "Game/Data/KarateBoss/bossattack4.h"
+#include "Game/Data/KarateBoss/bossIdleLeft.h"
+#include "Game/Data/KarateBoss/bossIdleRight.h"
 sf::Texture bossattack1Texture;
 sf::Texture bossattack2Texture;
 sf::Texture bossattack3Texture;

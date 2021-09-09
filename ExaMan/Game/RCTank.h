@@ -2,10 +2,10 @@
 #ifndef RCTANK_H
 #define RCTANK_H
 
-#include "Data/RCTank/rctankleft1.h"
-#include "Data/RCTank/rctankleft2.h"
-#include "Data/RCTank/rctankright1.h"
-#include "Data/RCTank/rctankright2.h"
+#include "Game/Data/RCTank/rctankleft1.h"
+#include "Game/Data/RCTank/rctankleft2.h"
+#include "Game/Data/RCTank/rctankright1.h"
+#include "Game/Data/RCTank/rctankright2.h"
 sf::Texture rctankleft1Texture;
 sf::Texture rctankleft2Texture;
 sf::Texture rctankright1Texture;

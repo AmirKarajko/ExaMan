@@ -2,18 +2,18 @@
 #ifndef EXPLOSION_H
 #define EXPLOSION_H
 
-#include "Data/Explosion/small/smallexp0.h"
-#include "Data/Explosion/small/smallexp1.h"
-#include "Data/Explosion/small/smallexp2.h"
-#include "Data/Explosion/small/smallexp3.h"
+#include "Game/Data/Explosion/small/smallexp0.h"
+#include "Game/Data/Explosion/small/smallexp1.h"
+#include "Game/Data/Explosion/small/smallexp2.h"
+#include "Game/Data/Explosion/small/smallexp3.h"
 sf::Texture smallexp0Texture;
 sf::Texture smallexp1Texture;
 sf::Texture smallexp2Texture;
 sf::Texture smallexp3Texture;
-#include "Data/Explosion/medium/mediumexp0.h"
-#include "Data/Explosion/medium/mediumexp1.h"
-#include "Data/Explosion/medium/mediumexp2.h"
-#include "Data/Explosion/medium/mediumexp3.h"
+#include "Game/Data/Explosion/medium/mediumexp0.h"
+#include "Game/Data/Explosion/medium/mediumexp1.h"
+#include "Game/Data/Explosion/medium/mediumexp2.h"
+#include "Game/Data/Explosion/medium/mediumexp3.h"
 sf::Texture mediumexp0Texture;
 sf::Texture mediumexp1Texture;
 sf::Texture mediumexp2Texture;

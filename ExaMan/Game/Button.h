@@ -5,11 +5,11 @@
 #include <SFML/Graphics.hpp>
 
 #include "Music.h";
-#include "Screens/ScreenEnum.h";
+#include "Game/Screens/ScreenEnum.h";
 
-#include "Data/Button/active.h"
-#include "Data/Button/hover.h"
-#include "Data/Button/inactive.h"
+#include "Game/Data/Button/active.h"
+#include "Game/Data/Button/hover.h"
+#include "Game/Data/Button/inactive.h"
 sf::Texture buttonActiveTexture;
 sf::Texture buttonInactiveTexture;
 sf::Texture buttonHoverTexture;
