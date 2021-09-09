@@ -4,8 +4,8 @@
 
 #include "SFML/Graphics.hpp";
 
-#include "Game/Screens/Screen.h";
-#include "Game/Button.h";
+#include "Screen.h";
+#include "../Button.h";
 
 class MenuScreen : public Screen {
 private:

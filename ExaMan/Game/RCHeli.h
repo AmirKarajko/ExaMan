@@ -2,8 +2,8 @@
 #ifndef RCHELI_H
 #define RCHELI_H
 
-#include "Game/Data/RCHeli/rcheli1.h"
-#include "Game/Data/RCHeli/rcheli2.h"
+#include "Data/RCHeli/rcheli1.h"
+#include "Data/RCHeli/rcheli2.h"
 sf::Texture rcheli1Texture;
 sf::Texture rcheli2Texture;
 

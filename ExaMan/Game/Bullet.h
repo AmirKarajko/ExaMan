@@ -5,8 +5,8 @@
 #include <SFML/Graphics.hpp>
 
 // Bullet
-#include "Game/Data/Bullet/bulletLeft.h"
-#include "Game/Data/Bullet/bulletRight.h"
+#include "Data/Bullet/bulletLeft.h"
+#include "Data/Bullet/bulletRight.h"
 sf::Texture bulletLeftTexture;
 sf::Texture bulletRightTexture;
 

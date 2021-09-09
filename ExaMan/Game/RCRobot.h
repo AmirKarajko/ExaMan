@@ -2,12 +2,12 @@
 #ifndef RCROBOT_H
 #define RCROBOT_H
 
-#include "Game/Data/RCRobot/rcrobotidleleft.h"
-#include "Game/Data/RCRobot/rcrobotidleright.h"
-#include "Game/Data/RCRobot/rcrobotwalkleft1.h"
-#include "Game/Data/RCRobot/rcrobotwalkleft2.h"
-#include "Game/Data/RCRobot/rcrobotwalkright1.h"
-#include "Game/Data/RCRobot/rcrobotwalkright2.h"
+#include "Data/RCRobot/rcrobotidleleft.h"
+#include "Data/RCRobot/rcrobotidleright.h"
+#include "Data/RCRobot/rcrobotwalkleft1.h"
+#include "Data/RCRobot/rcrobotwalkleft2.h"
+#include "Data/RCRobot/rcrobotwalkright1.h"
+#include "Data/RCRobot/rcrobotwalkright2.h"
 sf::Texture rcrobotidleleftTexture;
 sf::Texture rcrobotidlerightTexture;
 sf::Texture rcrobotwalkleft1Texture;
