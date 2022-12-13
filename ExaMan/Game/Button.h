@@ -87,7 +87,8 @@ public:
 		{
 		case sf::Event::MouseMoved:
 			if(!leftMouseButtonPressed) {
-				sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+				sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
+				sf::Vector2f mousePos = window.mapPixelToCoords(pixelPos);
 				sf::Vector2f mousePosF(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
 				sf::FloatRect rect = getRect();
 				if(rect.contains(mousePosF))
@@ -103,7 +104,8 @@ public:
 		case sf::Event::MouseButtonPressed:
 			if(event.mouseButton.button == sf::Mouse::Left)
 			{
-				sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+				sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
+				sf::Vector2f mousePos = window.mapPixelToCoords(pixelPos);
 				sf::Vector2f mousePosF(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
 				sf::FloatRect rect = getRect();
 				if(rect.contains(mousePosF))
@@ -115,7 +117,8 @@ public:
 		case sf::Event::MouseButtonReleased:
 			if(event.mouseButton.button == sf::Mouse::Left)
 			{
-				sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+				sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
+				sf::Vector2f mousePos = window.mapPixelToCoords(pixelPos);
 				sf::Vector2f mousePosF(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
 				sf::FloatRect rect = getRect();
 				if(rect.contains(mousePosF))
@@ -174,7 +177,8 @@ void initButtons() {
 }
 
 void updateButtons(sf::RenderWindow &window, sf::Event event) {
-	sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+	sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
+	sf::Vector2f mousePos = window.mapPixelToCoords(pixelPos);
 	sf::Vector2f mousePosF(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
 	for (int i = 0; i < sizeof(buttons) / sizeof(buttons[0]); i++)
 	{
